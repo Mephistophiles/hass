@@ -1,0 +1,12 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+homeassistant:
+  packages: !include_dir_merge_named packages
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+script: !include scripts.yaml
+scene: !include scenes.yaml

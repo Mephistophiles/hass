@@ -1,0 +1,70 @@
+kitchen:
+  homeassistant:
+    customize:
+      light.kitchen:
+        friendly_name: Kitchen Light
+        icon: mdi:ceiling-light
+      sensor.lywsd03mmc_temperature:
+        friendly_name: Temperature
+      sensor.lywsd03mmc_humidity:
+        friendly_name: Humidity
+      binary_sensor.0x54ef441000589d6f_motion:
+        friendly_name: Motion in Kitchen
+
+  template:
+    - binary_sensor:
+        - name: 0x54ef441000589d6f_motion
+          state: >
+            {{ is_state('binary_sensor.0x54ef441000589d6f_presence', 'on') or
+              states('sensor.0x54ef441000589d6f_presence_event') != 'leave'
+            }}
+        - name: 0x54ef441000589d6f_need_light
+          state: >
+            {{
+              is_state('binary_sensor.0x54ef441000589d6f_motion', 'on')
+              and is_state('binary_sensor.need_light', 'on')
+            }}
+
+  input_boolean:
+    kitchen_light_managed:
+      name: Light managed by Kitchen sensor
+
+  automation:
+    - alias: cr_kitchen_ceiling_light_auto_on
+      description: Кухня - включение по датчику движения
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.0x54ef441000589d6f_need_light
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: light.kitchen
+          state: "off"
+
+      action:
+        - service: light.turn_on
+          entity_id: light.kitchen
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.kitchen_light_managed
+
+    - alias: cr_kitchen_ceiling_light_auto_off
+      description: Кухня - отключение по датчику движения
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.0x54ef441000589d6f_need_light
+          to: "off"
+          for:
+            hours: 0
+            minutes: 0
+            seconds: 5
+      condition:
+        - condition: state
+          entity_id: input_boolean.kitchen_light_managed
+          state: "on"
+      action:
+        - service: light.turn_off
+          entity_id: light.kitchen
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.kitchen_light_managed

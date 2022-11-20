@@ -1,0 +1,6 @@
+global_sensors:
+  template:
+    - binary_sensor:
+        - name: need_light
+          state: >
+            {{state_attr("sun.sun", "elevation") < 2.7}}

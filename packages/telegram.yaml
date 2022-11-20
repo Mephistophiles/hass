@@ -1,0 +1,33 @@
+tg_config:
+  telegram_bot:
+    - platform: polling
+      api_key: !secret telegram_bot_api_key
+      allowed_chat_ids:
+        - !secret telegram_mzhukov_chatid
+  notify:
+    - platform: telegram
+      name: Maxim Zhukov
+      chat_id: !secret telegram_mzhukov_chatid
+  automation:
+    - alias: Notify at HASS start
+      trigger:
+        - platform: homeassistant
+          event: start
+      action:
+        - service: notify.maxim_zhukov
+          data:
+            message: Home Assistant - start
+      id: 8ef2f0cb5a9b4f57bdb9255d622b7a64
+
+    - alias: Light change
+      trigger:
+        platform: state
+        entity_id:
+          - light.bedroom
+          - light.kitchen
+          - switch.sonoff_100064a4af
+      action:
+        - service: notify.maxim_zhukov
+          data:
+            message: Light in {{trigger.to_state.attributes.friendly_name}} is {{trigger.to_state.state}}
+      id: 0e2cbb7f79c34d16a24618939762ed00

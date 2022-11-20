@@ -1,0 +1,81 @@
+hallway:
+  homeassistant:
+    customize:
+      light.hallway_light:
+        friendly_name: Hallway Light
+        icon: mdi:ceiling-light
+      binary_sensor.0x54ef44100056353b_presence:
+        friendly_name: Presence in hallway
+        icon: mdi:motion-sensor
+      switch.0xa4c1380e48732b0f:
+        friendly_name: Fridge
+        icon: mdi:fridge-variant
+      binary_sensor.0x54ef44100056353b_motion:
+        friendly_name: Motion in Hallway
+      switch.0xa4c138a7187b2e2c:
+        friendly_name: Socket
+        icon: mdi:power-socket-eu
+      light.hallway_boardroom:
+        friendly_name: Boardroom
+      light.hallway_kitchen:
+        friendly_name: Kitchen
+      light.0xa4c13887918ab25b:
+        friendly_name: Boardroom backlight
+
+  light:
+    - platform: switch
+      name: Hallway Light
+      entity_id: switch.sonoff_100064a4af
+
+  template:
+    - binary_sensor:
+        - name: 0x54ef44100056353b_motion
+          state: >
+            {{ is_state('binary_sensor.0x54ef44100056353b_presence', 'on') or
+              states('sensor.0x54ef44100056353b_presence_event') != 'leave'
+            }}
+
+  input_boolean:
+    hall_light_managed:
+      name: Light managed by Hall sensor
+
+  automation:
+    - id: bc2d9f7c34a24269a50c35e86ba9645f
+      alias: cr_ceiling_light_auto_on
+      description: Коридор - включение по датчику движения
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.0x54ef44100056353b_motion
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: light.hallway_light
+          state: "off"
+      action:
+        - service: light.turn_on
+          entity_id: light.hallway_light
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.hall_light_managed
+
+    - id: d933506faabd4fb59b80013c310ad841
+      alias: cr_ceiling_light_auto_off
+      description: Коридор - отключение по датчику движения
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.0x54ef44100056353b_motion
+          to: "off"
+          for:
+            hours: 0
+            minutes: 0
+            seconds: 60
+      condition:
+        - condition: state
+          entity_id: input_boolean.hall_light_managed
+          state: "on"
+      action:
+        - service: light.turn_off
+          entity_id: light.hallway_light
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.hall_light_managed

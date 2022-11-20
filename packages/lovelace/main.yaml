@@ -1,0 +1,97 @@
+view:
+  lovelace:
+    mode: yaml
+    resources:
+      - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+        type: module
+      - url: /hacsfiles/ha-sankey-chart/ha-sankey-chart.js
+        type: module
+  homeassistant:
+    customize:
+      sensor.total_load:
+        friendly_name: Total Load
+      sensor.bedroom_load:
+        friendly_name: Bedroom Load
+      sensor.kitchen_load:
+        friendly_name: Kitchen Load
+      sensor.hallway_load:
+        friendly_name: Hallway Load
+      sensor.bathroom_load:
+        friendly_name: Bathroom Load
+      sensor.garage_load:
+        friendly_name: Garage Load
+
+  template:
+    - sensor:
+        - name: total_load
+          state: >
+            {% set power = namespace(value=0) %}
+            {% set sensors = namespace(value = {}) %}
+            {% for entity in states.sensor
+                  if entity.entity_id.endswith("_power")
+                  and states(entity.entity_id) not in ['unavailable', 'unknown', 'None']
+                  and area_name(entity.entity_id)
+            %}
+            {% set power.value = power.value |int + entity.state |int %}
+            {% endfor %}
+            {{ (power.value) | round(2) }}
+        - name: bedroom_load
+          state: >
+            {% set power = namespace(value=0) %}
+            {% set sensors = namespace(value = {}) %}
+            {% for entity in states.sensor
+                  if entity.entity_id.endswith("_power")
+                  and states(entity.entity_id) not in ['unavailable', 'unknown', 'None']
+                  and area_name(entity.entity_id) == "Bedroom"
+            %}
+            {% set power.value = power.value |int + entity.state |int %}
+            {% endfor %}
+            {{ (power.value) | round(2) }}
+        - name: kitchen_load
+          state: >
+            {% set power = namespace(value=0) %}
+            {% set sensors = namespace(value = {}) %}
+            {% for entity in states.sensor
+                  if entity.entity_id.endswith("_power")
+                  and states(entity.entity_id) not in ['unavailable', 'unknown', 'None']
+                  and area_name(entity.entity_id) == "Kitchen"
+            %}
+            {% set power.value = power.value |int + entity.state |int %}
+            {% endfor %}
+            {{ (power.value) | round(2) }}
+        - name: hallway_load
+          state: >
+            {% set power = namespace(value=0) %}
+            {% set sensors = namespace(value = {}) %}
+            {% for entity in states.sensor
+                  if entity.entity_id.endswith("_power")
+                  and states(entity.entity_id) not in ['unavailable', 'unknown', 'None']
+                  and area_name(entity.entity_id) == "Hallway"
+            %}
+            {% set power.value = power.value |int + entity.state |int %}
+            {% endfor %}
+            {{ (power.value) | round(2) }}
+        - name: bathroom_load
+          state: >
+            {% set power = namespace(value=0) %}
+            {% set sensors = namespace(value = {}) %}
+            {% for entity in states.sensor
+                  if entity.entity_id.endswith("_power")
+                  and states(entity.entity_id) not in ['unavailable', 'unknown', 'None']
+                  and area_name(entity.entity_id) == "Bathroom"
+            %}
+            {% set power.value = power.value |int + entity.state |int %}
+            {% endfor %}
+            {{ (power.value) | round(2) }}
+        - name: garage_load
+          state: >
+            {% set power = namespace(value=0) %}
+            {% set sensors = namespace(value = {}) %}
+            {% for entity in states.sensor
+                  if entity.entity_id.endswith("_power")
+                  and states(entity.entity_id) not in ['unavailable', 'unknown', 'None']
+                  and area_name(entity.entity_id) == "Garage"
+            %}
+            {% set power.value = power.value |int + entity.state |int %}
+            {% endfor %}
+            {{ (power.value) | round(2) }}

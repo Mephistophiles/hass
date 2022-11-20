@@ -1,0 +1,28 @@
+bathroom:
+  homeassistant:
+    customize:
+      switch.0xa4c138fd310476d1:
+        friendly_name: Air Dryer
+        icon: mdi:tumble-dryer
+      switch.0xa4c13879641e5c47:
+        friendly_name: Washing machine
+        icon: mdi:washing-machine
+
+  automation:
+    - alias: Washing Machine Done
+      trigger:
+        platform: state
+        entity_id:
+          - binary_sensor.washing_machine_running
+        from: "on"
+        to: "off"
+      action:
+        - service: notify.maxim_zhukov
+          data:
+            message: Washing Machine is done
+  template:
+    - binary_sensor:
+        - name: washing_machine_running
+          state: >
+            {{ int(states('sensor.0xa4c13879641e5c47_power'), 0) > 10 }}
+          delay_off: 00:03:00

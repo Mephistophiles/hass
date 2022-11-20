@@ -1,0 +1,72 @@
+title: Main
+cards:
+  - title: Bedroom
+    type: entities
+    show_header_toggle: false
+    entities:
+      - entity: sensor.hacs
+        name: HACS Updates
+      - entity: light.bedroom
+      - entity: input_select.bedroom_light
+      - entity: sensor.bedroom_temperature
+      - entity: sensor.bedroom_humidity
+      - entity: sensor.air_pressure
+      - entity: sensor.co2
+      - entity: sensor.pm2_5
+      - entity: sensor.pm10
+      - entity: switch.0xa4c138a4476e3b34
+
+      # - entity: climate.zhimi_heater_mc2_54_48_e6_78_e3_06
+      # - entity: sensor.0xa4c138a844ec6c0f_voc
+      # - entity: sensor.0xa4c138a844ec6c0f_formaldehyd
+  - title: Hallway
+    type: entities
+    show_header_toggle: false
+    entities:
+      - entity: light.hallway_light
+      - entity: light.hallway_boardroom
+      - entity: light.0xa4c13887918ab25b
+        icon: mdi:led-strip
+      - entity: light.hallway_kitchen
+      - entity: sensor.0xa4c1380e48732b0f_power
+      - entity: binary_sensor.0x54ef44100056353b_presence
+  - title: Kitchen
+    type: entities
+    show_header_toggle: false
+    entities:
+      - entity: light.kitchen
+      - entity: sensor.lywsd03mmc_temperature
+      - entity: sensor.lywsd03mmc_humidity
+      - entity: switch.0xa4c138a7187b2e2c
+      - entity: sensor.0xa4c138a7187b2e2c_power
+  - type: weather-forecast
+    entity: weather.openweathermap
+  - title: Bathroom
+    type: entities
+    show_header_toggle: false
+    entities:
+      - entity: switch.0xa4c138fd310476d1
+      - entity: sensor.0xa4c138fd310476d1_power
+      - entity: switch.0xa4c13879641e5c47
+      - entity: binary_sensor.washing_machine_running
+        name: Washing Machine Running
+        icon: mdi:washing-machine
+      - entity: sensor.0xa4c13879641e5c47_power
+
+  - type: custom:auto-entities
+    card:
+      show_header_toggle: false
+      title: Battery low
+      type: entities
+    show_empty: false
+    filter:
+      include:
+        - attributes:
+            device_class: battery
+          state: <= 10
+      exclude:
+        - name: /[Ll]ow/
+        - name: /[Ss]tate/
+    sort:
+      method: state
+      numeric: true

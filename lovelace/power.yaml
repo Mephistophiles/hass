@@ -1,0 +1,48 @@
+title: Consumtion
+icon: mdi:chart-gantt
+cards:
+  - type: custom:sankey-chart
+    show_names: true
+    height: 1000
+    wide: true
+    sections:
+      - entities:
+          - entity_id: sensor.total_load
+            color: pink
+            children:
+              - sensor.bedroom_load
+              - sensor.kitchen_load
+              - sensor.bathroom_load
+              - sensor.hallway_load
+              - sensor.garage_load
+      - entities:
+          - entity_id: sensor.bedroom_load
+            color: navy
+            children:
+              - sensor.0xa4c138a4476e3b34_power
+              - sensor.0xa4c138baeec84dc4_power
+          - entity_id: sensor.kitchen_load
+            color: violet
+            children:
+              - sensor.0xa4c138a7187b2e2c_power
+          - entity_id: sensor.bathroom_load
+            color: cyan
+            children:
+              - sensor.0xa4c13879641e5c47_power
+              - sensor.0xa4c138fd310476d1_power
+          - entity_id: sensor.hallway_load
+            color: orange
+            children:
+              - sensor.0xa4c1380e48732b0f_power
+          - entity_id: sensor.garage_load
+            color: bisque
+            children:
+              - sensor.0xa4c138a138f92ff8_power
+      - entities:
+          - sensor.0xa4c138a4476e3b34_power
+          - sensor.0xa4c138baeec84dc4_power
+          - sensor.0xa4c138a7187b2e2c_power
+          - sensor.0xa4c13879641e5c47_power
+          - sensor.0xa4c138fd310476d1_power
+          - sensor.0xa4c1380e48732b0f_power
+          - sensor.0xa4c138a138f92ff8_power

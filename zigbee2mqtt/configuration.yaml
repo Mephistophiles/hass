@@ -1,0 +1,92 @@
+homeassistant: true
+mqtt:
+  server: mqtt://core-mosquitto:1883
+  user: addons
+  password: to4ua5bu6vujoohex0eereitoh8pee1zeed8die0do2IeTae9RahraseiGh3ugei
+serial:
+  port: /dev/ttyACM0
+  adapter: ezsp
+frontend:
+  port: 8099
+devices:
+  "0xa4c138a844ec6c0f":
+    friendly_name: "0xa4c138a844ec6c0f"
+  "0xa4c1380e48732b0f":
+    friendly_name: "0xa4c1380e48732b0f"
+    homeassistant:
+      name: Fridge
+    legacy: false
+    optimistic: true
+  "0x54ef44100056353b":
+    friendly_name: "0x54ef44100056353b"
+  "0xa4c13879641e5c47":
+    friendly_name: "0xa4c13879641e5c47"
+    homeassistant:
+      name: Washing Machine
+    legacy: false
+    optimistic: true
+  "0xa4c138fd310476d1":
+    friendly_name: "0xa4c138fd310476d1"
+    homeassistant:
+      name: Air Drying
+    legacy: false
+    optimistic: true
+  "0xa4c138baeec84dc4":
+    friendly_name: "0xa4c138baeec84dc4"
+    homeassistant:
+      name: PCtable
+    legacy: false
+    optimistic: true
+  "0xa4c138a7187b2e2c":
+    friendly_name: "0xa4c138a7187b2e2c"
+    homeassistant:
+      name: Kitchen
+    legacy: false
+    optimistic: true
+  "0xa4c138a4476e3b34":
+    friendly_name: "0xa4c138a4476e3b34"
+    homeassistant:
+      name: Air Humidifier
+    legacy: false
+    optimistic: true
+  "0xa4c138a138f92ff8":
+    friendly_name: "0xa4c138a138f92ff8"
+    homeassistant:
+      name: PC Garage
+    legacy: false
+    optimistic: true
+  "0x54ef4410005454e4":
+    friendly_name: "0x54ef4410005454e4"
+    homeassistant:
+      name: Presence Bedroom
+    legacy: false
+    optimistic: true
+  "0x54ef441000589d6f":
+    friendly_name: "0x54ef441000589d6f"
+    homeassistant:
+      name: Presence Kitchen
+    legacy: false
+    optimistic: true
+  "0xa4c13887918ab25b":
+    friendly_name: "0xa4c13887918ab25b"
+external_converters:
+  - TS0503B.js
+permit_join: false
+advanced:
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+  log_level: debug
+  log_syslog:
+    app_name: Zigbee2MQTT
+    eol: /n
+    host: localhost
+    localhost: localhost
+    path: /dev/log
+    pid: process.pid
+    port: 123
+    protocol: tcp4
+    type: "5424"
+  last_seen: ISO_8601
+device_options:
+  legacy: false

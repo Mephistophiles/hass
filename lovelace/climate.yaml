@@ -1,0 +1,28 @@
+title: Climate
+icon: mdi:home-thermometer
+cards:
+  - title: Temperature in rooms
+    type: entities
+    entities:
+      - entity: sensor.bedroom_temperature
+        name: Bedroom
+      - entity: sensor.lywsd03mmc_temperature
+        name: Kitchen
+      - entity: sensor.0xa4c138a844ec6c0f_temperature
+        name: Garage
+      - entity: sensor.openweathermap_temperature
+        name: Outdoor
+  - title: Humitify in rooms
+    type: entities
+    entities:
+      - entity: sensor.bedroom_humidity
+        name: Bedroom
+      - entity: sensor.lywsd03mmc_humidity
+        name: Kitchen
+      - entity: sensor.0xa4c138a844ec6c0f_humidity
+        name: Garage
+      - entity: sensor.openweathermap_humidity
+        name: Outdoor
+
+  - type: thermostat
+    entity: climate.zhimi_heater_mc2_54_48_e6_78_e3_06

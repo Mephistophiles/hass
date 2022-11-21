@@ -16,7 +16,7 @@ kitchen:
         - name: 0x54ef441000589d6f_motion
           state: >
             {{ is_state('binary_sensor.0x54ef441000589d6f_presence', 'on') or
-              states('sensor.0x54ef441000589d6f_presence_event') != 'leave'
+              states('sensor.0x54ef441000589d6f_presence_event') not in ['leave', 'unavailable']
             }}
         - name: 0x54ef441000589d6f_need_light
           state: >

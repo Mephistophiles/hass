@@ -32,7 +32,7 @@ hallway:
         - name: 0x54ef44100056353b_motion
           state: >
             {{ is_state('binary_sensor.0x54ef44100056353b_presence', 'on') or
-              states('sensor.0x54ef44100056353b_presence_event') != 'leave'
+              states('sensor.0x54ef44100056353b_presence_event') not in ['leave', 'unavailable']
             }}
 
   input_boolean:

@@ -83,7 +83,7 @@ bedroom:
         - name: 0x54ef4410005454e4_motion
           state: >
             {{ is_state('binary_sensor.0x54ef4410005454e4_presence', 'on') or
-              states('sensor.0x54ef4410005454e4_presence_event') not in ['leave', 'unavailable']
+              states('sensor.0x54ef4410005454e4_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
         - name: 0x54ef4410005454e4_need_light
           state: >

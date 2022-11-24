@@ -1,4 +1,5 @@
 title: Cameras
+icon: mdi:camera
 cards:
   - title: Parking
     type: picture-entity

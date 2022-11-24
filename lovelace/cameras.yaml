@@ -1,0 +1,6 @@
+title: Cameras
+cards:
+  - title: Parking
+    type: picture-entity
+    entity: camera.camera_hub_g2h_3630_camera_stream_management0
+

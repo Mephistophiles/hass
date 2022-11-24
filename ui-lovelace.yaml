@@ -1,5 +1,6 @@
 title: Home
 views:
   - !include lovelace/main.yaml
+  - !include lovelace/cameras.yaml
   - !include lovelace/power.yaml
   - !include lovelace/climate.yaml

@@ -37,6 +37,9 @@ bedroom:
         friendly_name: Air Humidifier
       binary_sensor.0x54ef4410005454e4_motion:
         friendly_name: Motion in Bedroom
+      camera.camera_hub_g2h_3630_camera_stream_management0:
+        friendly_name: Parking Camera
+
   mqtt:
     sensor:
       - name: "bedroom temperature"

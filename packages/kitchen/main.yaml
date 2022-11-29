@@ -10,6 +10,10 @@ kitchen:
         friendly_name: Humidity
       binary_sensor.0x54ef441000589d6f_motion:
         friendly_name: Motion in Kitchen
+      binary_sensor.0x54ef44100032140a_gas:
+        friendly_name: Gas Leak
+      binary_sensor.0x54ef44100048439c_smoke:
+        friendly_name: Smoke Detector
 
   template:
     - binary_sensor:

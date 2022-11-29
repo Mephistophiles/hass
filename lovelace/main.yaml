@@ -39,6 +39,8 @@ cards:
       - entity: sensor.lywsd03mmc_humidity
       - entity: switch.0xa4c138a7187b2e2c
       - entity: sensor.0xa4c138a7187b2e2c_power
+      - entity: binary_sensor.0x54ef44100032140a_gas
+      - entity: binary_sensor.0x54ef44100048439c_smoke
   - type: weather-forecast
     entity: weather.openweathermap
   - title: Bathroom

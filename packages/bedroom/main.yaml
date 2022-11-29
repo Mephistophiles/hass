@@ -43,20 +43,20 @@ bedroom:
       - name: CO₂
         state_topic: "sensors/co2"
         unit_of_measurement: "PPM"
-        class: carbon_dioxide
+        device_class: carbon_dioxide
         icon: mdi:molecule-co2
         unique_id: "co2"
       - name: PM 2.5
         state_topic: "sensors/pm2_5"
         unit_of_measurement: "PPM"
         unique_id: "pm25"
-        class: pm25
+        device_class: pm25
         icon: mdi:thought-bubble-outline
       - name: PM 10
         state_topic: "sensors/pm10"
         unit_of_measurement: "PPM"
         unique_id: "pm10"
-        class: pm10
+        device_class: pm10
         icon: mdi:thought-bubble
 
   input_select:

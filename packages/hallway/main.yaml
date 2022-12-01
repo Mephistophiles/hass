@@ -47,8 +47,7 @@ hallway:
       description: Коридор - включение по датчику движения
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.0x54ef44100056353b_motion
+          entity_id: binary_sensor.0x54ef44100056353b_motion
           to: "on"
       condition:
         - condition: state
@@ -65,8 +64,7 @@ hallway:
       description: Коридор - отключение по датчику движения
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.0x54ef44100056353b_motion
+          entity_id: binary_sensor.0x54ef44100056353b_motion
           to: "off"
           for:
             hours: 0
@@ -87,8 +85,7 @@ hallway:
       description: Нижняя подсветка - включение по датчику движения
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.0x54ef44100056353b_motion
+          entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
           to: "on"
       condition:
         - condition: state
@@ -103,8 +100,7 @@ hallway:
       description: Нижняя подсветка - выключение по датчику движения
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.0x54ef44100056353b_motion
+          entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
           to: "off"
           for:
             hours: 0

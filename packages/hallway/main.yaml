@@ -21,6 +21,8 @@ hallway:
         friendly_name: Kitchen
       light.0xa4c13887918ab25b:
         friendly_name: Boardroom backlight
+      binary_sensor.0xa4c138638ca68c94_occupancy:
+        friendly_name: Motion in Boardroom
 
   light:
     - platform: switch
@@ -79,3 +81,32 @@ hallway:
           entity_id: light.hallway_light
         - service: input_boolean.turn_off
           entity_id: input_boolean.hall_light_managed
+    - alias: backlight_auto_on
+      description: Нижняя подсветка - включение по датчику движения
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.0x54ef44100056353b_motion
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: light.need_light
+          state: "on"
+      action:
+        - service: light.turn_on
+          entity_id: light.0xa4c13887918ab25b
+
+    - alias: backlight_auto_off
+      description: Нижняя подсветка - выключение по датчику движения
+      trigger:
+        - platform: state
+          entity_id:
+            - binary_sensor.0x54ef44100056353b_motion
+          to: "off"
+          for:
+            hours: 0
+            minutes: 1
+            seconds: 0
+      action:
+        - service: light.turn_off
+          entity_id: light.0xa4c13887918ab25b

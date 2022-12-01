@@ -42,7 +42,7 @@ hallway:
       name: Light managed by Hall sensor
 
   automation:
-    - id: bc2d9f7c34a24269a50c35e86ba9645f
+    - id: cr_ceiling_light_auto_on
       alias: cr_ceiling_light_auto_on
       description: Коридор - включение по датчику движения
       trigger:
@@ -60,7 +60,7 @@ hallway:
         - service: input_boolean.turn_on
           entity_id: input_boolean.hall_light_managed
 
-    - id: d933506faabd4fb59b80013c310ad841
+    - id: cr_ceiling_light_auto_off
       alias: cr_ceiling_light_auto_off
       description: Коридор - отключение по датчику движения
       trigger:
@@ -81,7 +81,9 @@ hallway:
           entity_id: light.hallway_light
         - service: input_boolean.turn_off
           entity_id: input_boolean.hall_light_managed
-    - alias: backlight_auto_on
+
+    - id: backlight_auto_on
+      alias: backlight_auto_on
       description: Нижняя подсветка - включение по датчику движения
       trigger:
         - platform: state
@@ -96,7 +98,8 @@ hallway:
         - service: light.turn_on
           entity_id: light.0xa4c13887918ab25b
 
-    - alias: backlight_auto_off
+    - id: backlight_auto_off
+      alias: backlight_auto_off
       description: Нижняя подсветка - выключение по датчику движения
       trigger:
         - platform: state

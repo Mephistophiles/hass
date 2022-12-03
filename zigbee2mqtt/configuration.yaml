@@ -9,66 +9,72 @@ serial:
 frontend:
   port: 8099
 devices:
-  "0xa4c138a844ec6c0f":
-    friendly_name: "0xa4c138a844ec6c0f"
-  "0xa4c1380e48732b0f":
-    friendly_name: "0xa4c1380e48732b0f"
+  '0xa4c138a844ec6c0f':
+    friendly_name: '0xa4c138a844ec6c0f'
+  '0xa4c1380e48732b0f':
+    friendly_name: '0xa4c1380e48732b0f'
     homeassistant:
       name: Fridge
     legacy: false
     optimistic: true
-  "0x54ef44100056353b":
-    friendly_name: "0x54ef44100056353b"
-  "0xa4c13879641e5c47":
-    friendly_name: "0xa4c13879641e5c47"
+  '0x54ef44100056353b':
+    friendly_name: '0x54ef44100056353b'
+  '0xa4c13879641e5c47':
+    friendly_name: '0xa4c13879641e5c47'
     homeassistant:
       name: Washing Machine
     legacy: false
     optimistic: true
-  "0xa4c138fd310476d1":
-    friendly_name: "0xa4c138fd310476d1"
+  '0xa4c138fd310476d1':
+    friendly_name: '0xa4c138fd310476d1'
     homeassistant:
       name: Air Drying
     legacy: false
     optimistic: true
-  "0xa4c138baeec84dc4":
-    friendly_name: "0xa4c138baeec84dc4"
+  '0xa4c138baeec84dc4':
+    friendly_name: '0xa4c138baeec84dc4'
     homeassistant:
       name: PCtable
     legacy: false
     optimistic: true
-  "0xa4c138a7187b2e2c":
-    friendly_name: "0xa4c138a7187b2e2c"
+  '0xa4c138a7187b2e2c':
+    friendly_name: '0xa4c138a7187b2e2c'
     homeassistant:
       name: Kitchen
     legacy: false
     optimistic: true
-  "0xa4c138a4476e3b34":
-    friendly_name: "0xa4c138a4476e3b34"
+  '0xa4c138a4476e3b34':
+    friendly_name: '0xa4c138a4476e3b34'
     homeassistant:
       name: Air Humidifier
     legacy: false
     optimistic: true
-  "0xa4c138a138f92ff8":
-    friendly_name: "0xa4c138a138f92ff8"
+  '0xa4c138a138f92ff8':
+    friendly_name: '0xa4c138a138f92ff8'
     homeassistant:
       name: PC Garage
     legacy: false
     optimistic: true
-  "0x54ef4410005454e4":
-    friendly_name: "0x54ef4410005454e4"
+  '0x54ef4410005454e4':
+    friendly_name: '0x54ef4410005454e4'
     homeassistant:
       name: Presence Bedroom
     legacy: false
     optimistic: true
-  "0x54ef441000589d6f":
-    friendly_name: "0x54ef441000589d6f"
+  '0x54ef441000589d6f':
+    friendly_name: '0x54ef441000589d6f'
     homeassistant:
       name: Presence Kitchen
     legacy: false
     optimistic: true
-  "0xa4c13887918ab25b":
-    friendly_name: "0xa4c13887918ab25b"
+  '0xa4c13887918ab25b':
+    friendly_name: '0xa4c13887918ab25b'
+  '0x54ef44100048439c':
+    friendly_name: '0x54ef44100048439c'
+  '0x54ef44100032140a':
+    friendly_name: '0x54ef44100032140a'
+  '0xa4c138638ca68c94':
+    friendly_name: '0xa4c138638ca68c94'
 external_converters:
   - TS0503B.js
 permit_join: false
@@ -86,7 +92,12 @@ advanced:
     pid: process.pid
     port: 123
     protocol: tcp4
-    type: "5424"
+    type: '5424'
   last_seen: ISO_8601
 device_options:
   legacy: false
+availability:
+  active:
+    timeout: 60
+  passive:
+    timeout: 1500

@@ -16,8 +16,8 @@ bedroom:
         friendly_name: PC Table
       switch.0xa4c138a4476e3b34:
         friendly_name: Air Humidifier
-      binary_sensor.0x54ef4410005454e4_motion:
-        friendly_name: Motion in Bedroom
+      binary_sensor.bedroom_presence:
+        friendly_name: Presence in Bedroom
       camera.camera_hub_g2h_3630_camera_stream_management0:
         friendly_name: Parking Camera
 
@@ -71,15 +71,17 @@ bedroom:
 
   template:
     - binary_sensor:
-        - name: 0x54ef4410005454e4_motion
-          state: >
-            {{ is_state('binary_sensor.0x54ef4410005454e4_presence', 'on') or
-              states('sensor.0x54ef4410005454e4_presence_event') not in ['leave', 'unavailable', 'unknown']
-            }}
-        - name: 0x54ef4410005454e4_need_light
+        - name: bedroom_presence
+          device_class: presence
           state: >
             {{
-              is_state('binary_sensor.0x54ef4410005454e4_motion', 'on')
+              (is_state('binary_sensor.0x54ef4410005454e4_presence', 'on') or
+              states('sensor.0x54ef4410005454e4_presence_event') not in ['leave', 'unavailable', 'unknown']) or (is_state('binary_sensor.0xa4c138638ca68c94_occupancy', 'on'))
+            }}
+        - name: bedroom_need_light
+          state: >
+            {{
+              is_state('binary_sensor.bedroom_presence', 'on')
               and is_state('binary_sensor.need_light', 'on')
             }}
 
@@ -88,7 +90,8 @@ bedroom:
       name: Light managed by Bedroom sensor
 
   automation:
-    - alias: light_change_mode_to_on
+    - id: bedroom_light_mode_changed_to_on
+      alias: bedroom_light_mode_changed_to_on
       trigger:
         - platform: state
           entity_id:
@@ -99,7 +102,8 @@ bedroom:
           entity_id: light.bedroom
         - service: input_boolean.turn_off
           entity_id: input_boolean.bedroom_light_managed
-    - alias: light_change_mode_to_off
+    - id: bedroom_light_mode_changed_to_off
+      alias: bedroom_light_mode_changed_to_off
       trigger:
         - platform: state
           entity_id:
@@ -110,7 +114,8 @@ bedroom:
           entity_id: light.bedroom
         - service: input_boolean.turn_off
           entity_id: input_boolean.bedroom_light_managed
-    - alias: light_change_mode_to_auto_with_presence
+    - id: bedroom_light_mode_changed_to_auto_with_presence
+      alias: bedroom_light_mode_changed_to_auto_with_presence
       trigger:
         - platform: state
           entity_id:
@@ -118,7 +123,7 @@ bedroom:
           to: "AUTO"
       condition:
         - condition: state
-          entity_id: binary_sensor.0x54ef4410005454e4_need_light
+          entity_id: binary_sensor.bedroom_need_light
           state: "on"
       action:
         - service: light.turn_on
@@ -126,7 +131,8 @@ bedroom:
         - service: input_boolean.turn_on
           entity_id: input_boolean.bedroom_light_managed
 
-    - alias: light_change_mode_to_auto_wo_presence
+    - id: bedroom_light_mode_changed_to_auto_wo_presence
+      alias: bedroom_light_mode_changed_to_auto_wo_presence
       trigger:
         - platform: state
           entity_id:
@@ -134,7 +140,7 @@ bedroom:
           to: "AUTO"
       condition:
         - condition: state
-          entity_id: binary_sensor.0x54ef4410005454e4_need_light
+          entity_id: binary_sensor.bedroom_need_light
           state: "off"
       action:
         - service: light.turn_off
@@ -142,12 +148,13 @@ bedroom:
         - service: input_boolean.turn_off
           entity_id: input_boolean.bedroom_light_managed
 
-    - alias: cr_bedroom_ceiling_light_auto_on
-      description: Спальня - включение по датчику движения
+    - id: bedroom_presence_detected
+      alias: bedroom_presence_detected
+      description: Bedroom - presence detected
       trigger:
         - platform: state
           entity_id:
-            - binary_sensor.0x54ef4410005454e4_need_light
+            - binary_sensor.bedroom_need_light
           to: "on"
       condition:
         - condition: and
@@ -165,12 +172,13 @@ bedroom:
         - service: input_boolean.turn_on
           entity_id: input_boolean.bedroom_light_managed
 
-    - alias: cr_beedroom_ceiling_light_auto_off
-      description: Спальня - отключение по датчику движения
+    - id: bedroom_presence_clear
+      alias: bedroom_presence_clear
+      description: Bedroom - presence not detected
       trigger:
         - platform: state
           entity_id:
-            - binary_sensor.0x54ef4410005454e4_need_light
+            - binary_sensor.bedroom_need_light
           to: "off"
           for:
             hours: 0

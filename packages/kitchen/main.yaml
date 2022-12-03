@@ -8,38 +8,38 @@ kitchen:
         friendly_name: Temperature
       sensor.lywsd03mmc_humidity:
         friendly_name: Humidity
-      binary_sensor.0x54ef441000589d6f_motion:
-        friendly_name: Motion in Kitchen
+      binary_sensor.kitchen_presence:
+        friendly_name: Presence in Kitchen
       binary_sensor.0x54ef44100032140a_gas:
         friendly_name: Gas Leak
+        device_class: gas
       binary_sensor.0x54ef44100048439c_smoke:
         friendly_name: Smoke Detector
+        device_class: smoke
 
   template:
     - binary_sensor:
-        - name: 0x54ef441000589d6f_motion
+        - name: kitchen_presence
+          device_class: presence
           state: >
             {{ is_state('binary_sensor.0x54ef441000589d6f_presence', 'on') or
               states('sensor.0x54ef441000589d6f_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
-        - name: 0x54ef441000589d6f_need_light
+        - name: kitchen_need_light
           state: >
             {{
-              is_state('binary_sensor.0x54ef441000589d6f_motion', 'on')
+              is_state('binary_sensor.kitchen_presence', 'on')
               and is_state('binary_sensor.need_light', 'on')
             }}
 
-  input_boolean:
-    kitchen_light_managed:
-      name: Light managed by Kitchen sensor
-
   automation:
-    - alias: cr_kitchen_ceiling_light_auto_on
-      description: Кухня - включение по датчику движения
+    - id: kitchen_presence_detected
+      alias: kitchen_presence_detected
+      description: Kitchen - presence detected
       trigger:
         - platform: state
           entity_id:
-            - binary_sensor.0x54ef441000589d6f_need_light
+            - binary_sensor.kitchen_need_light
           to: "on"
       condition:
         - condition: state
@@ -49,26 +49,19 @@ kitchen:
       action:
         - service: light.turn_on
           entity_id: light.kitchen
-        - service: input_boolean.turn_on
-          entity_id: input_boolean.kitchen_light_managed
 
-    - alias: cr_kitchen_ceiling_light_auto_off
-      description: Кухня - отключение по датчику движения
+    - id: kitchen_presence_clear
+      alias: kitchen_presence_clear
+      description: Kitchen - presence clear
       trigger:
         - platform: state
           entity_id:
-            - binary_sensor.0x54ef441000589d6f_need_light
+            - binary_sensor.kitchen_need_light
           to: "off"
           for:
             hours: 0
             minutes: 0
             seconds: 5
-      condition:
-        - condition: state
-          entity_id: input_boolean.kitchen_light_managed
-          state: "on"
       action:
         - service: light.turn_off
           entity_id: light.kitchen
-        - service: input_boolean.turn_off
-          entity_id: input_boolean.kitchen_light_managed

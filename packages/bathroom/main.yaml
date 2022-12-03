@@ -9,7 +9,8 @@ bathroom:
         icon: mdi:washing-machine
 
   automation:
-    - alias: Washing Machine Done
+    - id: washing_machine_done
+      alias: Washing Machine Done
       trigger:
         platform: state
         entity_id:

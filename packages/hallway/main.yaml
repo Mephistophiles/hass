@@ -10,8 +10,8 @@ hallway:
       switch.0xa4c1380e48732b0f:
         friendly_name: Fridge
         icon: mdi:fridge-variant
-      binary_sensor.0x54ef44100056353b_motion:
-        friendly_name: Motion in Hallway
+      binary_sensor.hallway_presence:
+        friendly_name: Presence in Hallway
       switch.0xa4c138a7187b2e2c:
         friendly_name: Socket
         icon: mdi:power-socket-eu
@@ -22,7 +22,7 @@ hallway:
       light.0xa4c13887918ab25b:
         friendly_name: Boardroom backlight
       binary_sensor.0xa4c138638ca68c94_occupancy:
-        friendly_name: Motion in Boardroom
+        friendly_name: Presence in Boardroom
 
   light:
     - platform: switch
@@ -31,23 +31,20 @@ hallway:
 
   template:
     - binary_sensor:
-        - name: 0x54ef44100056353b_motion
+        - name: hallway_presence
+          device_class: presence
           state: >
             {{ is_state('binary_sensor.0x54ef44100056353b_presence', 'on') or
               states('sensor.0x54ef44100056353b_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
 
-  input_boolean:
-    hall_light_managed:
-      name: Light managed by Hall sensor
-
   automation:
-    - id: cr_ceiling_light_auto_on
-      alias: cr_ceiling_light_auto_on
-      description: Коридор - включение по датчику движения
+    - id: hallway_presence_detected
+      alias: hallway_presence_detected
+      description: Hallway - presence detecteed
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x54ef44100056353b_motion
+          entity_id: binary_sensor.hallway_presence
           to: "on"
       condition:
         - condition: state
@@ -56,33 +53,25 @@ hallway:
       action:
         - service: light.turn_on
           entity_id: light.hallway_light
-        - service: input_boolean.turn_on
-          entity_id: input_boolean.hall_light_managed
 
-    - id: cr_ceiling_light_auto_off
-      alias: cr_ceiling_light_auto_off
-      description: Коридор - отключение по датчику движения
+    - id: hallway_presence_clear
+      alias: hallway_presence_clear
+      description: Hallway - presence not detected
       trigger:
         - platform: state
-          entity_id: binary_sensor.0x54ef44100056353b_motion
+          entity_id: binary_sensor.hallway_presence
           to: "off"
           for:
             hours: 0
             minutes: 0
             seconds: 10
-      condition:
-        - condition: state
-          entity_id: input_boolean.hall_light_managed
-          state: "on"
       action:
         - service: light.turn_off
           entity_id: light.hallway_light
-        - service: input_boolean.turn_off
-          entity_id: input_boolean.hall_light_managed
 
     - id: backlight_auto_on
       alias: backlight_auto_on
-      description: Нижняя подсветка - включение по датчику движения
+      description: Backlight - enable by motion
       trigger:
         - platform: state
           entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
@@ -97,7 +86,7 @@ hallway:
 
     - id: backlight_auto_off
       alias: backlight_auto_off
-      description: Нижняя подсветка - выключение по датчику движения
+      description: Backlight - disable by no motion
       trigger:
         - platform: state
           entity_id: binary_sensor.0xa4c138638ca68c94_occupancy

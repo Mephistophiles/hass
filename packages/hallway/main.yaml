@@ -69,7 +69,7 @@ hallway:
           for:
             hours: 0
             minutes: 0
-            seconds: 60
+            seconds: 10
       condition:
         - condition: state
           entity_id: input_boolean.hall_light_managed

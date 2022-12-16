@@ -7,7 +7,7 @@ cards:
       - entity: sensor.hacs
         name: HACS Updates
       - entity: light.bedroom
-      - entity: input_select.bedroom_light
+      - entity: input_boolean.bedroom_manual_mode
       - entity: sensor.bedroom_temperature
       - entity: sensor.bedroom_humidity
       - entity: sensor.air_pressure

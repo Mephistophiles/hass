@@ -59,16 +59,6 @@ bedroom:
         device_class: pm10
         icon: mdi:thought-bubble
 
-  input_select:
-    bedroom_light:
-      name: Bedroom Light Mode
-      options:
-        - "AUTO"
-        - "ON"
-        - "OFF"
-      initial: AUTO
-      icon: mdi:lightbulb
-
   template:
     - binary_sensor:
         - name: bedroom_presence
@@ -86,68 +76,50 @@ bedroom:
             }}
 
   input_boolean:
+    bedroom_manual_mode:
+      name: Bedroom Manual Light Mode
+      icon: mdi:lightbulb
     bedroom_light_managed:
       name: Light managed by Bedroom sensor
 
   automation:
-    - id: bedroom_light_mode_changed_to_on
-      alias: bedroom_light_mode_changed_to_on
+    - id: bedroom_light_mode_changed_to_manual
+      alias: bedroom_light_mode_changed_to_manual
       trigger:
         - platform: state
           entity_id:
-            - input_select.bedroom_light
-          to: "ON"
+            - input_boolean.bedroom_manual_mode
+          to: "on"
       action:
-        - service: light.turn_on
-          entity_id: light.bedroom
         - service: input_boolean.turn_off
           entity_id: input_boolean.bedroom_light_managed
-    - id: bedroom_light_mode_changed_to_off
-      alias: bedroom_light_mode_changed_to_off
+    - id: bedroom_light_mode_changed_to_auto
+      alias: bedroom_light_mode_changed_to_auto
       trigger:
         - platform: state
           entity_id:
-            - input_select.bedroom_light
-          to: "OFF"
+            - input_boolean.bedroom_manual_mode
+          to: "off"
       action:
-        - service: light.turn_off
-          entity_id: light.bedroom
-        - service: input_boolean.turn_off
-          entity_id: input_boolean.bedroom_light_managed
-    - id: bedroom_light_mode_changed_to_auto_with_presence
-      alias: bedroom_light_mode_changed_to_auto_with_presence
-      trigger:
-        - platform: state
-          entity_id:
-            - input_select.bedroom_light
-          to: "AUTO"
-      condition:
-        - condition: state
-          entity_id: binary_sensor.bedroom_need_light
-          state: "on"
-      action:
-        - service: light.turn_on
-          entity_id: light.bedroom
-        - service: input_boolean.turn_on
-          entity_id: input_boolean.bedroom_light_managed
-
-    - id: bedroom_light_mode_changed_to_auto_wo_presence
-      alias: bedroom_light_mode_changed_to_auto_wo_presence
-      trigger:
-        - platform: state
-          entity_id:
-            - input_select.bedroom_light
-          to: "AUTO"
-      condition:
-        - condition: state
-          entity_id: binary_sensor.bedroom_need_light
-          state: "off"
-      action:
-        - service: light.turn_off
-          entity_id: light.bedroom
-        - service: input_boolean.turn_off
-          entity_id: input_boolean.bedroom_light_managed
-
+        - choose:
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.bedroom_need_light
+              state: "off"
+            sequence:
+              - service: light.turn_off
+                entity_id: light.bedroom
+              - service: input_boolean.turn_off
+                entity_id: input_boolean.bedroom_light_managed
+          - conditions:
+            - condition: state
+              entity_id: binary_sensor.bedroom_need_light
+              state: "on"
+            sequence:
+              - service: light.turn_on
+                entity_id: light.bedroom
+              - service: input_boolean.turn_on
+                entity_id: input_boolean.bedroom_light_managed
     - id: bedroom_presence_detected
       alias: bedroom_presence_detected
       description: Bedroom - presence detected
@@ -163,8 +135,8 @@ bedroom:
               entity_id: light.bedroom
               state: "off"
             - condition: state
-              entity_id: input_select.bedroom_light
-              state: "AUTO"
+              entity_id: input_boolean.bedroom_manual_mode
+              state: "off"
 
       action:
         - service: light.turn_on
@@ -184,10 +156,6 @@ bedroom:
             hours: 0
             minutes: 0
             seconds: 5
-      condition:
-        - condition: state
-          entity_id: input_boolean.bedroom_light_managed
-          state: "on"
       action:
         - service: light.turn_off
           entity_id: light.bedroom

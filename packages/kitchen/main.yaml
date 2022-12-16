@@ -59,7 +59,14 @@ kitchen:
           for:
             hours: 0
             minutes: 0
-            seconds: 5
+            seconds: 30
+        - platform: state
+          entity_id: binary_sensor.kitchen_presence
+          to: "off"
+          for:
+            hours: 0
+            minutes: 0
+            seconds: 30
       action:
         - service: light.turn_off
           entity_id: light.kitchen

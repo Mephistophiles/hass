@@ -9,8 +9,10 @@ global_sensors:
       min: 0
       max: 120
       step: 1
+      initial: 10
     maximum_illuminance:
       name: Maximum Illuminance for disable Light
       min: 0
       max: 120
       step: 1
+      initial: 60

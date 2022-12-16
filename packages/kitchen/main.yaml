@@ -38,8 +38,7 @@ kitchen:
       description: Kitchen - presence detected
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.kitchen_need_light
+          entity_id: binary_sensor.kitchen_need_light
           to: "on"
       condition:
         - condition: state
@@ -55,8 +54,7 @@ kitchen:
       description: Kitchen - presence clear
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.kitchen_need_light
+          entity_id: binary_sensor.kitchen_need_light
           to: "off"
           for:
             hours: 0

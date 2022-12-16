@@ -87,8 +87,7 @@ bedroom:
       alias: bedroom_light_mode_changed_to_manual
       trigger:
         - platform: state
-          entity_id:
-            - input_boolean.bedroom_manual_mode
+          entity_id: input_boolean.bedroom_manual_mode
           to: "on"
       action:
         - service: input_boolean.turn_off
@@ -97,8 +96,7 @@ bedroom:
       alias: bedroom_light_mode_changed_to_auto
       trigger:
         - platform: state
-          entity_id:
-            - input_boolean.bedroom_manual_mode
+          entity_id: input_boolean.bedroom_manual_mode
           to: "off"
       action:
         - choose:
@@ -149,8 +147,7 @@ bedroom:
       description: Bedroom - presence not detected
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.bedroom_need_light
+          entity_id: binary_sensor.bedroom_need_light
           to: "off"
           for:
             hours: 0

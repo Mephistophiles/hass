@@ -1,6 +1,16 @@
 global_sensors:
-  template:
-    - binary_sensor:
-        - name: need_light
-          state: >
-            {{state_attr("sun.sun", "elevation") < 2.7}}
+  input_boolean:
+    need_light:
+      name: Need Light in Home
+      icon: mdi:lightbulb
+  input_number:
+    minimal_illuminance:
+      name: Minimal Illuminance for enable Light
+      min: 0
+      max: 120
+      step: 1
+    maximum_illuminance:
+      name: Maximum Illuminance for disable Light
+      min: 0
+      max: 120
+      step: 1

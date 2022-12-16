@@ -29,7 +29,7 @@ kitchen:
           state: >
             {{
               is_state('binary_sensor.kitchen_presence', 'on')
-              and is_state('binary_sensor.need_light', 'on')
+              and is_state('input_boolean.need_light', 'on')
             }}
 
   automation:

@@ -78,7 +78,7 @@ hallway:
           to: "on"
       condition:
         - condition: state
-          entity_id: binary_sensor.need_light
+          entity_id: input_boolean.need_light
           state: "on"
       action:
         - service: light.turn_on

@@ -46,7 +46,7 @@ tg_config:
     - alias: Smoke Detected
       id: smoke_detected
       trigger:
-        platform: state:
+        platform: state
         entity_id: binary_sensor.0x54ef44100048439c_smoke
         to: "on"
       action:
@@ -57,7 +57,7 @@ tg_config:
     - alias: Gas Detected
       id: gas_detected
       trigger:
-        platform: state:
+        platform: state
         entity_id: binary_sensor.0x54ef44100032140a_gas
         to: "on"
       action:
@@ -68,7 +68,7 @@ tg_config:
     - alias: Water Leak Detected
       id: water_leak_detected
       trigger:
-        platform: state:
+        platform: state
         entity_id:
           - binary_sensor.0x00158d0008dfef55_water_leak
           - binary_sensor.0x00158d0008e0331a_water_leak

@@ -3,31 +3,79 @@ tg_config:
     - platform: polling
       api_key: !secret telegram_bot_api_key
       allowed_chat_ids:
-        - !secret telegram_mzhukov_chatid
+        - !secret telegram_self_chatid
   notify:
     - platform: telegram
-      name: Maxim Zhukov
-      chat_id: !secret telegram_mzhukov_chatid
+      name: self
+      chat_id: !secret telegram_self_chatid
   automation:
     - alias: Notify at HASS start
+      id: hass_start
       trigger:
         - platform: homeassistant
           event: start
       action:
-        - service: notify.maxim_zhukov
+        - service: notify.self
           data:
             message: Home Assistant - start
-      id: 8ef2f0cb5a9b4f57bdb9255d622b7a64
 
     - alias: Light change
+      id: light_change
       trigger:
         platform: state
         entity_id:
           - light.bedroom
           - light.kitchen
-          - switch.sonoff_100064a4af
+          - light.hallway_light
       action:
-        - service: notify.maxim_zhukov
+        - service: notify.self
           data:
             message: Light in {{trigger.to_state.attributes.friendly_name}} is {{trigger.to_state.state}}
-      id: 0e2cbb7f79c34d16a24618939762ed00
+
+    - alias: Presence in Hallway
+      id: hallway_presence
+      trigger:
+        platform: state
+        entity_id: binary_sensor.hallway_presence
+        to: "on"
+      action:
+        - service: notify.self
+          data:
+            message: Presence detected in hallway
+
+    - alias: Smoke Detected
+      id: smoke_detected
+      trigger:
+        platform: state:
+        entity_id: binary_sensor.0x54ef44100048439c_smoke
+        to: "on"
+      action:
+        - service: notify.self
+          data:
+            message: Alarm! Smoke detected in the kitchen!
+
+    - alias: Gas Detected
+      id: gas_detected
+      trigger:
+        platform: state:
+        entity_id: binary_sensor.0x54ef44100032140a_gas
+        to: "on"
+      action:
+        - service: notify.self
+          data:
+            message: Alarm! Gas detected in the kitchen!
+
+    - alias: Water Leak Detected
+      id: water_leak_detected
+      trigger:
+        platform: state:
+        entity_id:
+          - binary_sensor.0x00158d0008dfef55_water_leak
+          - binary_sensor.0x00158d0008e0331a_water_leak
+          - binary_sensor.0x00158d0008e03762_water_leak
+          - binary_sensor.0x00158d0008e03929_water_leak
+        to: "on"
+      action:
+        - service: notify.self
+          data:
+            message: Alarm! Water Leak detected in {{trigger.to_state.attributes.friendly_name}} in {{area_name(trigger.entity_id)}}

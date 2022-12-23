@@ -16,6 +16,9 @@ kitchen:
       binary_sensor.0x54ef44100048439c_smoke:
         friendly_name: Smoke Detector
         device_class: smoke
+      binary_sensor.0x00158d0008e0331a_water_leak:
+        friendly_name: Leak sensor - Sink
+        device_class: moisture
 
   template:
     - binary_sensor:

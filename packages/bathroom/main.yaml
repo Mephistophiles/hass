@@ -7,6 +7,15 @@ bathroom:
       switch.0xa4c13879641e5c47:
         friendly_name: Washing machine
         icon: mdi:washing-machine
+      binary_sensor.0x00158d0008e03762_water_leak:
+        friendly_name: Leak sensor - Sink
+        device_class: moisture
+      binary_sensor.0x00158d0008dfef55_water_leak:
+        friendly_name: Leak sensor - Washing mashine
+        device_class: moisture
+      binary_sensor.0x00158d0008e03929_water_leak:
+        friendly_name: Leak sensor - Bath
+        device_class: moisture
 
   automation:
     - id: washing_machine_done

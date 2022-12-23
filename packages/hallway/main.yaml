@@ -102,7 +102,7 @@ hallway:
         - minutes: '*'
           platform: time_pattern
       condition:
-        - condtition: state
+        - condition: state
           entity_id: binary_sensor.hallway_presence
           state: "off"
       action:

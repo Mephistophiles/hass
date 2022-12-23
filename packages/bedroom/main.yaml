@@ -189,7 +189,7 @@ bedroom:
         - minutes: '*'
           platform: time_pattern
       condition:
-        - condtition: state
+        - condition: state
           entity_id: binary_sensor.bedroom_presence
           state: "off"
       action:

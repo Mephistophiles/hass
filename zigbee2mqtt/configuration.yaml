@@ -11,6 +11,10 @@ frontend:
 devices:
   '0xa4c138a844ec6c0f':
     friendly_name: '0xa4c138a844ec6c0f'
+    homeassistant:
+      name: Garage AIR
+    legacy: false
+    optimistic: true
   '0xa4c1380e48732b0f':
     friendly_name: '0xa4c1380e48732b0f'
     homeassistant:
@@ -19,6 +23,10 @@ devices:
     optimistic: true
   '0x54ef44100056353b':
     friendly_name: '0x54ef44100056353b'
+    homeassistant:
+      name: Presence hallway
+    legacy: false
+    optimistic: true
   '0xa4c13879641e5c47':
     friendly_name: '0xa4c13879641e5c47'
     homeassistant:
@@ -69,16 +77,56 @@ devices:
     optimistic: true
   '0xa4c13887918ab25b':
     friendly_name: '0xa4c13887918ab25b'
+    homeassistant:
+      name: Hallway backlight
+    legacy: false
+    optimistic: true
   '0x54ef44100048439c':
     friendly_name: '0x54ef44100048439c'
+    homeassistant:
+      name: Smoke detector
+    legacy: false
+    optimistic: true
   '0x54ef44100032140a':
     friendly_name: '0x54ef44100032140a'
+    homeassistant:
+      name: Gas leak detector
+    legacy: false
+    optimistic: true
   '0xa4c138638ca68c94':
     friendly_name: '0xa4c138638ca68c94'
   '0x04cf8cdf3c8dd15b':
     friendly_name: '0x04cf8cdf3c8dd15b'
   '0x70ac08fffe99724d':
     friendly_name: '0x70ac08fffe99724d'
+    homeassistant:
+      name: Presence bedroom
+    legacy: false
+    optimistic: true
+  '0x00158d0008e03762':
+    friendly_name: '0x00158d0008e03762'
+    homeassistant:
+      name: Sink
+    legacy: false
+    optimistic: true
+  '0x00158d0008e03929':
+    friendly_name: '0x00158d0008e03929'
+    homeassistant:
+      name: Bath
+    legacy: false
+    optimistic: true
+  '0x00158d0008dfef55':
+    friendly_name: '0x00158d0008dfef55'
+    homeassistant:
+      name: Washing machine
+    legacy: false
+    optimistic: true
+  '0x00158d0008e0331a':
+    friendly_name: '0x00158d0008e0331a'
+    homeassistant:
+      name: Kitchen sink
+    legacy: false
+    optimistic: true
 external_converters:
   - TS0503B.js
 permit_join: false

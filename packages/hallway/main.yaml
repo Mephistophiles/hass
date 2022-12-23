@@ -37,6 +37,7 @@ hallway:
             {{ is_state('binary_sensor.0x54ef44100056353b_presence', 'on') or
               states('sensor.0x54ef44100056353b_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
+          delay_off: 00:00:30
 
   automation:
     - id: hallway_presence_detected
@@ -61,10 +62,6 @@ hallway:
         - platform: state
           entity_id: binary_sensor.hallway_presence
           to: "off"
-          for:
-            hours: 0
-            minutes: 0
-            seconds: 10
       action:
         - service: light.turn_off
           entity_id: light.hallway_light
@@ -98,3 +95,18 @@ hallway:
       action:
         - service: light.turn_off
           entity_id: light.0xa4c13887918ab25b
+    - id: hallway_minute_without_presence
+      alias: hallway_minute_without_presence
+      description: hallway - scheduled check for presence
+      trigger:
+        - minutes: '*'
+          platform: time_pattern
+      condition:
+        - condtition: state
+          entity_id: binary_sensor.hallway_presence
+          state: "off"
+      action:
+        - service: light.turn_off
+          entity_id: light.hallway_light
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.hallway_light_managed

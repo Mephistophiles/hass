@@ -28,6 +28,7 @@ kitchen:
             {{ is_state('binary_sensor.0x54ef441000589d6f_presence', 'on') or
               states('sensor.0x54ef441000589d6f_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
+          delay_off: 00:00:30
         - name: kitchen_need_light
           state: >
             {{
@@ -59,17 +60,24 @@ kitchen:
         - platform: state
           entity_id: binary_sensor.kitchen_need_light
           to: "off"
-          for:
-            hours: 0
-            minutes: 0
-            seconds: 30
         - platform: state
           entity_id: binary_sensor.kitchen_presence
           to: "off"
-          for:
-            hours: 0
-            minutes: 0
-            seconds: 30
       action:
         - service: light.turn_off
           entity_id: light.kitchen
+    - id: kitchen_minute_without_presence
+      alias: kitchen_minute_without_presence
+      description: kitchen - scheduled check for presence
+      trigger:
+        - minutes: '*'
+          platform: time_pattern
+      condition:
+        - condtition: state
+          entity_id: binary_sensor.kitchen_presence
+          state: "off"
+      action:
+        - service: light.turn_off
+          entity_id: light.kitchen
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.kitchen_light_managed

@@ -20,7 +20,7 @@ bedroom:
         friendly_name: Presence in Bedroom
       camera.camera_hub_g2h_3630_camera_stream_management0:
         friendly_name: Parking Camera
-      binary_sensor.presence_bedroom_presence:
+      binary_sensor.presence_bedroom_2_presence:
         friendly_name: Presence in Bedroom, sensor 2
       sensor.light_sensor_illuminance_lux:
         friendly_name: Illuminance in Bedroom
@@ -71,7 +71,7 @@ bedroom:
             {{
               (is_state('binary_sensor.presence_bedroom_presence', 'on') or states('sensor.presence_bedroom_presence_event') not in ['leave', 'unavailable', 'unknown'])
                or is_state('binary_sensor.hallway_motion_tracker_occupancy', 'on')
-               or is_state('binary_sensor.presence_bedroom_presence', 'on')
+               or is_state('binary_sensor.presence_bedroom_2_presence', 'on')
             }}
         - name: bedroom_need_light
           state: >

@@ -4,7 +4,7 @@ hallway:
       light.hallway_light:
         friendly_name: Hallway Light
         icon: mdi:ceiling-light
-      binary_sensor.presence_hallway_presence:
+      binary_sensor.0x54ef44100056353b_presence:
         friendly_name: Presence in hallway
         icon: mdi:motion-sensor
       switch.0xa4c1380e48732b0f:
@@ -21,7 +21,7 @@ hallway:
         friendly_name: Kitchen
       light.hallway_backlight:
         friendly_name: Boardroom backlight
-      binary_sensor.hallway_motion_tracker_occupancy:
+      binary_sensor.0xa4c138638ca68c94_occupancy:
         friendly_name: Presence in Boardroom
 
   light:
@@ -34,8 +34,8 @@ hallway:
         - name: hallway_presence
           device_class: presence
           state: >
-            {{ is_state('binary_sensor.presence_hallway_presence', 'on') or
-              states('sensor.presence_hallway_presence_event') not in ['leave', 'unavailable', 'unknown']
+            {{ is_state('binary_sensor.0x54ef44100056353b_presence', 'on') or
+              states('sensor.0x54ef44100056353b_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
           delay_off: 00:00:30
 
@@ -71,7 +71,7 @@ hallway:
       description: Backlight - enable by motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.hallway_motion_tracker_occupancy
+          entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
           to: "on"
       condition:
         - condition: state
@@ -79,14 +79,14 @@ hallway:
           state: "on"
       action:
         - service: light.turn_on
-          entity_id: light.hallway_backlight
+          entity_id: light.0xa4c13887918ab25b
 
     - id: backlight_auto_off
       alias: backlight_auto_off
       description: Backlight - disable by no motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.hallway_motion_tracker_occupancy
+          entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
           to: "off"
           for:
             hours: 0

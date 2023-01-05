@@ -19,17 +19,17 @@ cards:
           - entity_id: sensor.bedroom_load
             color: navy
             children:
-              - sensor.socket_air_humidifier_power
-              - sensor.socket_pc_table_power
+              - sensor.0xa4c138a4476e3b34_power
+              - sensor.0xa4c138baeec84dc4_power
           - entity_id: sensor.kitchen_load
             color: violet
             children:
-              - sensor.socket_kitchen_power
+              - sensor.0xa4c138a7187b2e2c_power
           - entity_id: sensor.bathroom_load
             color: cyan
             children:
-              - sensor.socket_washing_machine_power
-              - sensor.socket_air_dryer_power
+              - sensor.0xa4c13879641e5c47_power
+              - sensor.0xa4c138fd310476d1_power
           - entity_id: sensor.hallway_load
             color: orange
             children:
@@ -37,12 +37,12 @@ cards:
           - entity_id: sensor.garage_load
             color: bisque
             children:
-              - sensor.socket_pc_garage_power
+              - sensor.0xa4c138a138f92ff8_power
       - entities:
-          - sensor.socket_air_humidifier_power
-          - sensor.socket_pc_table_power
-          - sensor.socket_kitchen_power
-          - sensor.socket_washing_machine_power
-          - sensor.socket_air_dryer_power
+          - sensor.0xa4c138a4476e3b34_power
+          - sensor.0xa4c138baeec84dc4_power
+          - sensor.0xa4c138a7187b2e2c_power
+          - sensor.0xa4c13879641e5c47_power
+          - sensor.0xa4c138fd310476d1_power
           - sensor.0xa4c1380e48732b0f_power
-          - sensor.socket_pc_garage_power
+          - sensor.0xa4c138a138f92ff8_power

@@ -10,13 +10,13 @@ kitchen:
         friendly_name: Humidity
       binary_sensor.kitchen_presence:
         friendly_name: Presence in Kitchen
-      binary_sensor.gas_leak_detector_gas:
+      binary_sensor.0x54ef44100032140a_gas:
         friendly_name: Gas Leak
         device_class: gas
-      binary_sensor.smoke_detector_smoke:
+      binary_sensor.0x54ef44100048439c_smoke:
         friendly_name: Smoke Detector
         device_class: smoke
-      binary_sensor.water_leak_sensor_kitchen_sink_water_leak:
+      binary_sensor.0x00158d0008e0331a_water_leak:
         friendly_name: Leak sensor - Sink
         device_class: moisture
 
@@ -25,8 +25,8 @@ kitchen:
         - name: kitchen_presence
           device_class: presence
           state: >
-            {{ is_state('binary_sensor.presence_kitchen_presence', 'on') or
-              states('sensor.presence_kitchen_presence_event') not in ['leave', 'unavailable', 'unknown']
+            {{ is_state('binary_sensor.0x54ef441000589d6f_presence', 'on') or
+              states('sensor.0x54ef441000589d6f_presence_event') not in ['leave', 'unavailable', 'unknown']
             }}
           delay_off: 00:00:30
         - name: kitchen_need_light

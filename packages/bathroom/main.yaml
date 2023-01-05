@@ -27,9 +27,11 @@ bathroom:
         from: "on"
         to: "off"
       action:
-        - service: notify.maxim_zhukov
+        - service: notify.self
           data:
             message: Washing Machine is done
+            data:
+              disable_notification: true
   template:
     - binary_sensor:
         - name: washing_machine_running

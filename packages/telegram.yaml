@@ -31,6 +31,8 @@ tg_config:
         - service: notify.self
           data:
             message: Light in {{trigger.to_state.attributes.friendly_name}} is {{trigger.to_state.state}}
+            data:
+              disable_notification: true
 
     - alias: Presence in Hallway
       id: hallway_presence

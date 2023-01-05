@@ -24,6 +24,16 @@ bedroom:
         friendly_name: Presence in Bedroom, sensor 2
       sensor.0x04cf8cdf3c8dd15b_illuminance_lux:
         friendly_name: Illuminance in Bedroom
+      sensor.cgllc_s1_232d_co2_density:
+        friendly_name: CO₂
+      sensor.cgllc_s1_232d_pm25_density:
+        friendly_name: PM 2.5
+      sensor.cgllc_s1_232d_environment:
+        friendly_name: Humidity
+      sensor.cgllc_s1_232d_temperature:
+        friendly_name: Temperature
+      sensor.cgllc_s1_232d_tvoc_density:
+        friendly_name: TVOC
 
   mqtt:
     sensor:

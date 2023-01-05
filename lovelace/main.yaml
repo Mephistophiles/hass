@@ -8,12 +8,12 @@ cards:
         name: HACS Updates
       - entity: light.bedroom
       - entity: input_boolean.bedroom_manual_mode
-      - entity: sensor.bedroom_temperature
-      - entity: sensor.bedroom_humidity
+      - entity: sensor.cgllc_s1_232d_temperature
+      - entity: sensor.cgllc_s1_232d_environment
       - entity: sensor.air_pressure
-      - entity: sensor.co2
-      - entity: sensor.pm2_5
-      - entity: sensor.pm10
+      - entity: sensor.cgllc_s1_232d_co2_density
+      - entity: sensor.cgllc_s1_232d_pm25_density
+      - entity: sensor.cgllc_s1_232d_tvoc_density
       - entity: switch.socket_air_humidifier
       - entity: sensor.0x04cf8cdf3c8dd15b_illuminance_lux
 

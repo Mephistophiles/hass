@@ -105,6 +105,9 @@ hallway:
         - condition: state
           entity_id: binary_sensor.hallway_presence
           state: "off"
+        - condition: state
+          entity_id: light.hallway_light
+          state: "on"
       action:
         - service: light.turn_off
           entity_id: light.hallway_light

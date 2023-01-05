@@ -15,6 +15,7 @@ cards:
       - entity: sensor.pm2_5
       - entity: sensor.pm10
       - entity: switch.0xa4c138a4476e3b34
+      - entity: sensor.0x04cf8cdf3c8dd15b_illuminance_lux
 
       # - entity: climate.zhimi_heater_mc2_54_48_e6_78_e3_06
       # - entity: sensor.0xa4c138a844ec6c0f_voc

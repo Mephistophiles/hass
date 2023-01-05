@@ -95,8 +95,16 @@ devices:
     optimistic: true
   '0xa4c138638ca68c94':
     friendly_name: '0xa4c138638ca68c94'
+    homeassistant:
+      name: Hallway motion tracker
+    legacy: false
+    optimistic: true
   '0x04cf8cdf3c8dd15b':
     friendly_name: '0x04cf8cdf3c8dd15b'
+    homeassistant:
+      name: Light Sensor
+    legacy: false
+    optimistic: true
   '0x70ac08fffe99724d':
     friendly_name: '0x70ac08fffe99724d'
     homeassistant:

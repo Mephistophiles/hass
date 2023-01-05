@@ -12,17 +12,17 @@ bedroom:
         icon: mdi:ceiling-light
       climate.zhimi_heater_mc2_54_48_e6_78_e3_06:
         friendly_name: Heater
-      switch.0xa4c138baeec84dc4:
+      switch.socket_pc_table:
         friendly_name: PC Table
-      switch.0xa4c138a4476e3b34:
+      switch.socket_air_humidifier:
         friendly_name: Air Humidifier
       binary_sensor.bedroom_presence:
         friendly_name: Presence in Bedroom
       camera.camera_hub_g2h_3630_camera_stream_management0:
         friendly_name: Parking Camera
-      binary_sensor.0x70ac08fffe99724d_presence:
+      binary_sensor.presence_bedroom_presence:
         friendly_name: Presence in Bedroom, sensor 2
-      sensor.0x04cf8cdf3c8dd15b_illuminance_lux:
+      sensor.light_sensor_illuminance_lux:
         friendly_name: Illuminance in Bedroom
 
   mqtt:
@@ -69,9 +69,9 @@ bedroom:
           device_class: presence
           state: >
             {{
-              (is_state('binary_sensor.0x54ef4410005454e4_presence', 'on') or states('sensor.0x54ef4410005454e4_presence_event') not in ['leave', 'unavailable', 'unknown'])
-               or is_state('binary_sensor.0xa4c138638ca68c94_occupancy', 'on')
-               or is_state('binary_sensor.0x70ac08fffe99724d_presence', 'on')
+              (is_state('binary_sensor.presence_bedroom_presence', 'on') or states('sensor.presence_bedroom_presence_event') not in ['leave', 'unavailable', 'unknown'])
+               or is_state('binary_sensor.hallway_motion_tracker_occupancy', 'on')
+               or is_state('binary_sensor.presence_bedroom_presence', 'on')
             }}
         - name: bedroom_need_light
           state: >
@@ -93,7 +93,7 @@ bedroom:
       alias: illuminance_change_light
       trigger:
         - platform: numeric_state
-          entity_id: sensor.0x04cf8cdf3c8dd15b_illuminance_lux
+          entity_id: sensor.light_sensor_illuminance_lux
           above: input_number.maximum_illuminance
       action:
         - service: input_boolean.turn_off
@@ -102,7 +102,7 @@ bedroom:
       alias: illuminance_change_dark
       trigger:
         - platform: numeric_state
-          entity_id: sensor.0x04cf8cdf3c8dd15b_illuminance_lux
+          entity_id: sensor.light_sensor_illuminance_lux
           below: input_number.minimal_illuminance
       action:
         - service: input_boolean.turn_on

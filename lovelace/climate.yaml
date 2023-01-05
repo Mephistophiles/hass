@@ -8,7 +8,7 @@ cards:
         name: Bedroom
       - entity: sensor.lywsd03mmc_temperature
         name: Kitchen
-      - entity: sensor.0xa4c138a844ec6c0f_temperature
+      - entity: sensor.garage_air_monitor_temperature
         name: Garage
       - entity: sensor.openweathermap_temperature
         name: Outdoor
@@ -19,7 +19,7 @@ cards:
         name: Bedroom
       - entity: sensor.lywsd03mmc_humidity
         name: Kitchen
-      - entity: sensor.0xa4c138a844ec6c0f_humidity
+      - entity: sensor.garage_air_monitor_humidity
         name: Garage
       - entity: sensor.openweathermap_humidity
         name: Outdoor

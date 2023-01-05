@@ -14,23 +14,23 @@ cards:
       - entity: sensor.co2
       - entity: sensor.pm2_5
       - entity: sensor.pm10
-      - entity: switch.0xa4c138a4476e3b34
-      - entity: sensor.0x04cf8cdf3c8dd15b_illuminance_lux
+      - entity: switch.socket_air_humidifier
+      - entity: sensor.light_sensor_illuminance_lux
 
       # - entity: climate.zhimi_heater_mc2_54_48_e6_78_e3_06
-      # - entity: sensor.0xa4c138a844ec6c0f_voc
-      # - entity: sensor.0xa4c138a844ec6c0f_formaldehyd
+      # - entity: sensor.garage_air_monitor_voc
+      # - entity: sensor.garage_air_monitor_formaldehyd
   - title: Hallway
     type: entities
     show_header_toggle: false
     entities:
       - entity: light.hallway_light
       - entity: light.hallway_boardroom
-      - entity: light.0xa4c13887918ab25b
+      - entity: light.hallway_backlight
         icon: mdi:led-strip
       - entity: light.hallway_kitchen
       - entity: sensor.0xa4c1380e48732b0f_power
-      - entity: binary_sensor.0x54ef44100056353b_presence
+      - entity: binary_sensor.presence_hallway_presence
   - title: Kitchen
     type: entities
     show_header_toggle: false
@@ -38,27 +38,27 @@ cards:
       - entity: light.kitchen
       - entity: sensor.lywsd03mmc_temperature
       - entity: sensor.lywsd03mmc_humidity
-      - entity: switch.0xa4c138a7187b2e2c
-      - entity: sensor.0xa4c138a7187b2e2c_power
-      - entity: binary_sensor.0x54ef44100032140a_gas
-      - entity: binary_sensor.0x54ef44100048439c_smoke
-      - entity: binary_sensor.0x00158d0008e0331a_water_leak
+      - entity: switch.socket_kitchen
+      - entity: sensor.socket_kitchen_power
+      - entity: binary_sensor.gas_leak_detector_gas
+      - entity: binary_sensor.smoke_detector_smoke
+      - entity: binary_sensor.water_leak_sensor_kitchen_sink_water_leak
   - type: weather-forecast
     entity: weather.openweathermap
   - title: Bathroom
     type: entities
     show_header_toggle: false
     entities:
-      - entity: switch.0xa4c138fd310476d1
-      - entity: sensor.0xa4c138fd310476d1_power
-      - entity: switch.0xa4c13879641e5c47
-      - entity: binary_sensor.washing_machine_running
+      - entity: switch.socket_air_dryer
+      - entity: sensor.socket_air_dryer_power
+      - entity: switch.socket_washing_machine
+      - entity: binary_sensor.socket_washing_machine_running
         name: Washing Machine Running
         icon: mdi:washing-machine
-      - entity: sensor.0xa4c13879641e5c47_power
-      - entity: binary_sensor.0x00158d0008e03762_water_leak
-      - entity: binary_sensor.0x00158d0008dfef55_water_leak
-      - entity: binary_sensor.0x00158d0008e03929_water_leak
+      - entity: sensor.socket_washing_machine_power
+      - entity: binary_sensor.water_leak_sensor_sink_water_leak
+      - entity: binary_sensor.water_leak_sensor_washing_machine_water_leak
+      - entity: binary_sensor.water_leak_sensor_bath_water_leak
 
   - type: custom:auto-entities
     card:

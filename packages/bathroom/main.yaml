@@ -1,29 +1,29 @@
 bathroom:
   homeassistant:
     customize:
-      switch.0xa4c138fd310476d1:
+      switch.socket_air_dryer:
         friendly_name: Air Dryer
         icon: mdi:tumble-dryer
-      switch.0xa4c13879641e5c47:
+      switch.socket_washing_machine:
         friendly_name: Washing machine
         icon: mdi:washing-machine
-      binary_sensor.0x00158d0008e03762_water_leak:
+      binary_sensor.water_leak_sensor_sink_water_leak:
         friendly_name: Leak sensor - Sink
         device_class: moisture
-      binary_sensor.0x00158d0008dfef55_water_leak:
+      binary_sensor.water_leak_sensor_washing_machine_water_leak:
         friendly_name: Leak sensor - Washing mashine
         device_class: moisture
-      binary_sensor.0x00158d0008e03929_water_leak:
+      binary_sensor.water_leak_sensor_bath_water_leak:
         friendly_name: Leak sensor - Bath
         device_class: moisture
 
   automation:
-    - id: washing_machine_done
+    - id: socket_washing_machine_done
       alias: Washing Machine Done
       trigger:
         platform: state
         entity_id:
-          - binary_sensor.washing_machine_running
+          - binary_sensor.socket_washing_machine_running
         from: "on"
         to: "off"
       action:
@@ -34,7 +34,7 @@ bathroom:
               disable_notification: true
   template:
     - binary_sensor:
-        - name: washing_machine_running
+        - name: socket_washing_machine_running
           state: >
-            {{ int(states('sensor.0xa4c13879641e5c47_power'), 0) > 10 }}
+            {{ int(states('sensor.socket_washing_machine_power'), 0) > 10 }}
           delay_off: 00:03:00

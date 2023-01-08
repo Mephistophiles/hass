@@ -3,6 +3,9 @@ global_sensors:
     need_light:
       name: Need Light in Home
       icon: mdi:lightbulb
+    manual_light:
+      name: Manual Light
+      icon: mdi:lightbulb
   input_number:
     minimal_illuminance:
       name: Minimal Illuminance for enable Light

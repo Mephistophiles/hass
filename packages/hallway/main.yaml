@@ -48,9 +48,14 @@ hallway:
           entity_id: binary_sensor.hallway_presence
           to: "on"
       condition:
-        - condition: state
-          entity_id: light.hallway_light
-          state: "off"
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: light.hallway_light
+              state: "off"
+            - condition: state
+              entity_id: input_boolean.manual_light
+              state: "off"
       action:
         - service: light.turn_on
           entity_id: light.hallway_light
@@ -58,6 +63,15 @@ hallway:
     - id: hallway_presence_clear
       alias: hallway_presence_clear
       description: Hallway - presence not detected
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: light.hallway_light
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.manual_light
+              state: "off"
       trigger:
         - platform: state
           entity_id: binary_sensor.hallway_presence

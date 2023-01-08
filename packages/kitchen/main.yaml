@@ -45,9 +45,14 @@ kitchen:
           entity_id: binary_sensor.kitchen_need_light
           to: "on"
       condition:
-        - condition: state
-          entity_id: light.kitchen
-          state: "off"
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: light.kitchen
+              state: "off"
+            - condition: state
+              entity_id: input_boolean.manual_light
+              state: "off"
 
       action:
         - service: light.turn_on
@@ -56,6 +61,15 @@ kitchen:
     - id: kitchen_presence_clear
       alias: kitchen_presence_clear
       description: Kitchen - presence clear
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: light.kitchen
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.manual_light
+              state: "off"
       trigger:
         - platform: state
           entity_id: binary_sensor.kitchen_need_light

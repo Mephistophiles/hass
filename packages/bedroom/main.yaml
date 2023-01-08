@@ -80,7 +80,7 @@ bedroom:
           state: >
             {{
               (is_state('binary_sensor.0x54ef4410005454e4_presence', 'on') or states('sensor.0x54ef4410005454e4_presence_event') not in ['leave', 'unavailable', 'unknown'])
-               or is_state('binary_sensor.0xa4c138638ca68c94_occupancy', 'on')
+               or is_state('binary_sensor.hallway_motion_tracker_occupancy', 'on')
                or is_state('binary_sensor.0x70ac08fffe99724d_presence', 'on')
             }}
         - name: bedroom_need_light

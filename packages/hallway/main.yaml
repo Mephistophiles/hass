@@ -21,7 +21,7 @@ hallway:
         friendly_name: Kitchen
       light.hallway_backlight:
         friendly_name: Boardroom backlight
-      binary_sensor.0xa4c138638ca68c94_occupancy:
+      binary_sensor.hallway_motion_tracker_occupancy:
         friendly_name: Presence in Boardroom
 
   light:
@@ -85,7 +85,7 @@ hallway:
       description: Backlight - enable by motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
+          entity_id: binary_sensor.hallway_motion_tracker_occupancy
           to: "on"
       condition:
         - condition: state
@@ -100,7 +100,7 @@ hallway:
       description: Backlight - disable by no motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.0xa4c138638ca68c94_occupancy
+          entity_id: binary_sensor.hallway_motion_tracker_occupancy
           to: "off"
           for:
             hours: 0

@@ -93,7 +93,7 @@ hallway:
           state: "on"
       action:
         - service: light.turn_on
-          entity_id: light.0xa4c13887918ab25b
+          entity_id: light.hallway_backlight
 
     - id: backlight_auto_off
       alias: backlight_auto_off

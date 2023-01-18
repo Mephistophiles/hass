@@ -120,6 +120,9 @@ hallway:
           entity_id: binary_sensor.hallway_presence
           state: "off"
         - condition: state
+          entity_id: input_boolean.manual_light
+          state: "off"
+        - condition: state
           entity_id: light.hallway_light
           state: "on"
       action:

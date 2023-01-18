@@ -91,6 +91,9 @@ kitchen:
           entity_id: binary_sensor.kitchen_presence
           state: "off"
         - condition: state
+          entity_id: input_boolean.manual_light
+          state: "off"
+        - condition: state
           entity_id: light.kitchen
           state: "on"
       action:

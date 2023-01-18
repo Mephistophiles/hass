@@ -215,6 +215,9 @@ bedroom:
           entity_id: binary_sensor.bedroom_presence
           state: "off"
         - condition: state
+          entity_id: input_boolean.manual_light
+          state: "off"
+        - condition: state
           entity_id: light.bedroom
           state: "on"
       action:

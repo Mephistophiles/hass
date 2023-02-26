@@ -40,6 +40,16 @@ kitchen:
         - platform: state
           entity_id: binary_sensor.kitchen_need_light
           to: "on"
+        - device_id: 51bc3dfc1974547eaad7564c0d3298ed
+          domain: zha
+          platform: device
+          type: Enter
+          subtype: sensor
+        - device_id: 51bc3dfc1974547eaad7564c0d3298ed
+          domain: zha
+          platform: device
+          type: Approach
+          subtype: sensor
       condition:
         - condition: and
           conditions:

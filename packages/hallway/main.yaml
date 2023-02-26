@@ -4,12 +4,6 @@ hallway:
       light.hallway_light:
         friendly_name: Hallway Light
         icon: mdi:ceiling-light
-      binary_sensor.0x54ef44100056353b_presence:
-        friendly_name: Presence in hallway
-        icon: mdi:motion-sensor
-      switch.0xa4c1380e48732b0f:
-        friendly_name: Fridge
-        icon: mdi:fridge-variant
       binary_sensor.hallway_presence:
         friendly_name: Presence in Hallway
       switch.socket_kitchen:
@@ -21,8 +15,6 @@ hallway:
         friendly_name: Kitchen
       light.hallway_backlight:
         friendly_name: Boardroom backlight
-      binary_sensor.hallway_motion_tracker_occupancy:
-        friendly_name: Presence in Boardroom
 
   light:
     - platform: switch
@@ -34,9 +26,7 @@ hallway:
         - name: hallway_presence
           device_class: presence
           state: >
-            {{ is_state('binary_sensor.0x54ef44100056353b_presence', 'on') or
-              states('sensor.0x54ef44100056353b_presence_event') not in ['leave', 'unavailable', 'unknown']
-            }}
+            {{ is_state('binary_sensor.aqara_lumi_motion_sensor_hallway_ac01_occupancy_2', 'on') }}
           delay_off: 00:00:30
 
   automation:
@@ -85,7 +75,7 @@ hallway:
       description: Backlight - enable by motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.hallway_motion_tracker_occupancy
+          entity_id: binary_sensor.motion_sensor_boardroom_iaszone
           to: "on"
       condition:
         - condition: state
@@ -100,7 +90,7 @@ hallway:
       description: Backlight - disable by no motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.hallway_motion_tracker_occupancy
+          entity_id: binary_sensor.motion_sensor_boardroom_iaszone
           to: "off"
           for:
             hours: 0

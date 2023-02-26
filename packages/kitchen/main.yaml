@@ -8,8 +8,6 @@ kitchen:
         friendly_name: Temperature
       sensor.lywsd03mmc_humidity:
         friendly_name: Humidity
-      binary_sensor.kitchen_presence:
-        friendly_name: Presence in Kitchen
       binary_sensor.0x54ef44100032140a_gas:
         friendly_name: Gas Leak
         device_class: gas
@@ -25,9 +23,7 @@ kitchen:
         - name: kitchen_presence
           device_class: presence
           state: >
-            {{ is_state('binary_sensor.0x54ef441000589d6f_presence', 'on') or
-              states('sensor.0x54ef441000589d6f_presence_event') not in ['leave', 'unavailable', 'unknown']
-            }}
+            {{ is_state('binary_sensor.aqara_lumi_motion_ac01_occupancy', 'on') }}
           delay_off: 00:00:30
         - name: kitchen_need_light
           state: >

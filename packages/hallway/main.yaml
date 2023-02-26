@@ -37,6 +37,21 @@ hallway:
         - platform: state
           entity_id: binary_sensor.hallway_presence
           to: "on"
+        - device_id: 8a0cb6d8ad734a0dc5c8c6ec07ed225c
+          domain: zha
+          platform: device
+          type: Enter
+          subtype: sensor
+        - device_id: 8a0cb6d8ad734a0dc5c8c6ec07ed225c
+          domain: zha
+          platform: device
+          type: Enter
+          subtype: sensor
+        - device_id: 8a0cb6d8ad734a0dc5c8c6ec07ed225c
+          domain: zha
+          platform: device
+          type: Approach
+          subtype: sensor
       condition:
         - condition: and
           conditions:

@@ -160,11 +160,6 @@ bedroom:
           platform: device
           type: Enter
           subtype: sensor
-        - device_id: 438f877623fb7d4563ca2ba93b018c71
-          domain: zha
-          platform: device
-          type: Approach
-          subtype: sensor
       condition:
         - condition: and
           conditions:

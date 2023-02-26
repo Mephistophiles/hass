@@ -45,14 +45,12 @@ kitchen:
           platform: device
           type: Enter
           subtype: sensor
-        - device_id: 51bc3dfc1974547eaad7564c0d3298ed
-          domain: zha
-          platform: device
-          type: Approach
-          subtype: sensor
       condition:
         - condition: and
           conditions:
+            - condition: state
+              entity_id: input_boolean.need_light
+              state: "on"
             - condition: state
               entity_id: light.kitchen
               state: "off"

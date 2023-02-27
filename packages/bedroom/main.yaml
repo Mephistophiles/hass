@@ -152,8 +152,7 @@ bedroom:
       description: Bedroom - presence detected
       trigger:
         - platform: state
-          entity_id:
-            - binary_sensor.bedroom_need_light
+          entity_id: binary_sensor.bedroom_need_light
           to: "on"
         - device_id: 438f877623fb7d4563ca2ba93b018c71
           domain: zha
@@ -164,7 +163,7 @@ bedroom:
         - condition: and
           conditions:
             - condition: state
-              entity_id: light.need_light
+              entity_id: input_boolean.need_light
               state: "on"
             - condition: state
               entity_id: light.bedroom

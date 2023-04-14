@@ -8,7 +8,8 @@ cards:
         name: HACS Updates
       - entity: light.bedroom
       - entity: input_boolean.bedroom_manual_mode
-      - entity: input_boolean.manual_light
+      - entity: input_boolean.auto_light_on
+      - entity: input_boolean.auto_light_off
       - entity: sensor.cgllc_s1_232d_temperature
       - entity: sensor.cgllc_s1_232d_environment
       - entity: sensor.air_pressure

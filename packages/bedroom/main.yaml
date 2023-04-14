@@ -170,8 +170,8 @@ bedroom:
           entity_id: input_boolean.bedroom_manual_mode
           state: "off"
         - condition: state
-          entity_id: input_boolean.manual_light
-          state: "off"
+          entity_id: input_boolean.auto_light_on
+          state: "on"
 
       action:
         - service: light.turn_on
@@ -197,8 +197,8 @@ bedroom:
           entity_id: input_boolean.bedroom_manual_mode
           state: "off"
         - condition: state
-          entity_id: input_boolean.manual_light
-          state: "off"
+          entity_id: input_boolean.auto_light_off
+          state: "on"
       action:
         - service: light.turn_off
           entity_id: light.bedroom
@@ -215,8 +215,8 @@ bedroom:
           entity_id: binary_sensor.bedroom_presence
           state: "off"
         - condition: state
-          entity_id: input_boolean.manual_light
-          state: "off"
+          entity_id: input_boolean.auto_light_off
+          state: "on"
         - condition: state
           entity_id: light.bedroom
           state: "on"

@@ -8,13 +8,13 @@ kitchen:
         friendly_name: Temperature
       sensor.lywsd03mmc_humidity:
         friendly_name: Humidity
-      binary_sensor.0x54ef44100032140a_gas:
+      binary_sensor.kitchen_gas_leak_detector_gas:
         friendly_name: Gas Leak
         device_class: gas
-      binary_sensor.0x54ef44100048439c_smoke:
+      binary_sensor.kitchen_smoke_leak_detector_smoke:
         friendly_name: Smoke Detector
         device_class: smoke
-      binary_sensor.0x00158d0008e0331a_water_leak:
+      binary_sensor.kitchen_water_leak_sensor_sink_water_leak:
         friendly_name: Leak sensor - Sink
         device_class: moisture
 
@@ -23,7 +23,7 @@ kitchen:
         - name: kitchen_presence
           device_class: presence
           state: >
-            {{ is_state('binary_sensor.aqara_lumi_motion_ac01_occupancy', 'on') }}
+            {{ is_state('binary_sensor.kitchen_motion_sensor_presence', 'on') }}
           delay_off: 00:00:30
         - name: kitchen_need_light
           state: >
@@ -40,11 +40,9 @@ kitchen:
         - platform: state
           entity_id: binary_sensor.kitchen_need_light
           to: "on"
-        - device_id: 51bc3dfc1974547eaad7564c0d3298ed
-          domain: zha
-          platform: device
-          type: Enter
-          subtype: sensor
+        - platform: state
+          entity_id: sensor.kitchen_motion_sensor_presence_event
+          to: "enter"
       condition:
         - condition: and
           conditions:

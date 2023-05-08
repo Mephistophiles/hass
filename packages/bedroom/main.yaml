@@ -12,12 +12,14 @@ bedroom:
         icon: mdi:ceiling-light
       climate.zhimi_heater_mc2_54_48_e6_78_e3_06:
         friendly_name: Heater
-      binary_sensor.bedroom_presence:
-        friendly_name: Presence in Bedroom
+      binary_sensor.bedroom_motion_sensor_bed_presence:
+        friendly_name: Presence in Bedroom (bed)
       camera.camera_hub_g2h_3630_camera_stream_management0:
         friendly_name: Parking Camera
-      binary_sensor.0x70ac08fffe99724d_presence:
-        friendly_name: Presence in Bedroom, sensor 2
+      binary_sensor.bedroom_motion_sensor_pc_presence:
+        friendly_name: Presence in Bedroom (pc)
+      sensor.bedroom_illuminance_sensor_illuminance_lux:
+        friendly_name: Illuminance in bedroom
       sensor.cgllc_s1_232d_co2_density:
         friendly_name: CO₂
       sensor.cgllc_s1_232d_pm25_density:
@@ -73,9 +75,8 @@ bedroom:
           device_class: presence
           state: >
             {{
-               is_state('binary_sensor.aqara_lumi_motion_sensor_bedroom_ac01_occupancy', 'on')
-               or is_state('binary_sensor.occupancy_sensor_bedroom_occupancy', 'on')
-               or is_state('binary_sensor.motion_sensor_boardroom_iaszone', 'on')
+               is_state('binary_sensor.bedroom_motion_sensor_bed_presence', 'on')
+               or is_state('binary_sensor.bedroom_motion_sensor_pc_presence', 'on')
             }}
         - name: bedroom_need_light
           state: >
@@ -97,7 +98,7 @@ bedroom:
       alias: illuminance_change_light
       trigger:
         - platform: numeric_state
-          entity_id: sensor.lumi_lumi_sen_ill_agl01_illuminance
+          entity_id: sensor.bedroom_illuminance_sensor
           above: input_number.maximum_illuminance
       action:
         - service: input_boolean.turn_off
@@ -106,7 +107,7 @@ bedroom:
       alias: illuminance_change_dark
       trigger:
         - platform: numeric_state
-          entity_id: sensor.lumi_lumi_sen_ill_agl01_illuminance
+          entity_id: sensor.bedroom_illuminance_sensor
           below: input_number.minimal_illuminance
       action:
         - service: input_boolean.turn_on
@@ -154,11 +155,9 @@ bedroom:
         - platform: state
           entity_id: binary_sensor.bedroom_need_light
           to: "on"
-        - device_id: 438f877623fb7d4563ca2ba93b018c71
-          domain: zha
-          platform: device
-          type: Enter
-          subtype: sensor
+        - platform: state
+          entity_id: sensor.bedroom_motion_sensor_bed_presence_event
+          type: enter
       condition:
         - condition: state
           entity_id: input_boolean.need_light

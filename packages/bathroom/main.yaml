@@ -14,6 +14,14 @@ bathroom:
             message: Washing Machine is done
             data:
               disable_notification: true
+  homeassistant:
+    customize:
+      binary_sensor.bathroom_water_leak_sensor_bath_water_leak:
+        friendly_name: "Leak sensor - Bath"
+      binary_sensor.bathroom_water_leak_sensor_sink_water_leak:
+        friendly_name: "Leak sensor - Sink"
+      binary_sensor.bathroom_water_leak_sensor_washing_machine_water_leak:
+        friendly_name: "Leak sensor - Washing Machine"
   template:
     - binary_sensor:
         - name: washing_machine_running

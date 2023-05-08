@@ -6,6 +6,8 @@ hallway:
         icon: mdi:ceiling-light
       binary_sensor.hallway_presence:
         friendly_name: Presence in Hallway
+      binary_sensor.hallway_motion_sensor_door_presence:
+        friendly_name: Presence in Hallway door
       switch.socket_kitchen:
         friendly_name: Socket
         icon: mdi:power-socket-eu
@@ -24,7 +26,7 @@ hallway:
         - name: hallway_presence
           device_class: presence
           state: >
-            {{ is_state('binary_sensor.aqara_lumi_motion_sensor_hallway_ac01_occupancy_2', 'on') }}
+            {{ is_state('binary_sensor.hallway_motion_sensor_door_presence', 'on') }}
           delay_off: 00:00:30
 
   automation:
@@ -35,16 +37,9 @@ hallway:
         - platform: state
           entity_id: binary_sensor.hallway_presence
           to: "on"
-        - device_id: 8a0cb6d8ad734a0dc5c8c6ec07ed225c
-          domain: zha
-          platform: device
-          type: Enter
-          subtype: sensor
-        - device_id: 8a0cb6d8ad734a0dc5c8c6ec07ed225c
-          domain: zha
-          platform: device
-          type: Enter
-          subtype: sensor
+        - platform: state
+          entity_id: sensor.hallway_motion_sensor_door_presence_event
+          to: enter
       condition:
         - condition: and
           conditions:
@@ -83,7 +78,7 @@ hallway:
       description: Backlight - enable by motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.motion_sensor_boardroom_iaszone
+          entity_id: binary_sensor.hallway_motion_sensor_wardrobe_occupancy
           to: "on"
       condition:
         - condition: state
@@ -98,7 +93,7 @@ hallway:
       description: Backlight - disable by no motion
       trigger:
         - platform: state
-          entity_id: binary_sensor.motion_sensor_boardroom_iaszone
+          entity_id: binary_sensor.hallway_motion_sensor_wardrobe_occupancy
           to: "off"
           for:
             hours: 0

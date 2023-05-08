@@ -17,7 +17,7 @@ cards:
       - entity: sensor.cgllc_s1_232d_pm25_density
       - entity: sensor.cgllc_s1_232d_tvoc_density
       - entity: switch.socket_bedroom_air_humidifier_switch
-      - entity: sensor.lumi_lumi_sen_ill_agl01_illuminance
+      - entity: sensor.bedroom_illuminance_sensor_illuminance_lux
 
       # - entity: climate.zhimi_heater_mc2_54_48_e6_78_e3_06
       # - entity: sensor.0xa4c138a844ec6c0f_voc
@@ -32,7 +32,8 @@ cards:
         icon: mdi:led-strip
       # - entity: light.hallway_kitchen
       - entity: sensor.socket_fridge_active_power
-      - entity: binary_sensor.aqara_lumi_motion_sensor_hallway_ac01_occupancy_2
+      - entity: binary_sensor.hallway_motion_sensor_door_presence
+      - entity: binary_sensor.hallway_motion_sensor_wardrobe_occupancy
   - title: Kitchen
     type: entities
     show_header_toggle: false
@@ -42,9 +43,9 @@ cards:
       - entity: sensor.lywsd03mmc_humidity
       - entity: switch.socket_kitchen_switch
       - entity: sensor.socket_kitchen_active_power
-      - entity: binary_sensor.lumi_lumi_sensor_gas_acn02_iaszone
-      - entity: binary_sensor.lumi_lumi_sensor_smoke_acn03_iaszone
-      - entity: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_3
+      - entity: binary_sensor.kitchen_gas_leak_detector_gas
+      - entity: binary_sensor.kitchen_smoke_leak_detector_smoke
+      - entity: binary_sensor.kitchen_water_leak_sensor_sink_water_leak
   - type: weather-forecast
     entity: weather.openweathermap
   - title: Bathroom
@@ -58,8 +59,8 @@ cards:
         name: Washing Machine Running
         icon: mdi:washing-machine
       - entity: sensor.tz3000_cehuw1lw_ts011f_active_power_2
-      - entity: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone
-      - entity: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_2
+      - entity: binary_sensor.bathroom_leak_sensor_bath_water_leak
+      - entity: binary_sensor.bathroom_water_leak_sensor_sink_water_leak
       - entity: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_4
 
   - type: custom:auto-entities

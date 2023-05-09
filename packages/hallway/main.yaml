@@ -15,6 +15,8 @@ hallway:
         friendly_name: Boardroom
       light.hallway_kitchen:
         friendly_name: Kitchen
+      light.hallway_backlight_wardrobe:
+        friendly_name: Backlight in Wardrobe
 
   light:
     - platform: switch
@@ -86,7 +88,7 @@ hallway:
           state: "on"
       action:
         - service: light.turn_on
-          entity_id: light.backlight_boardroom_light
+          entity_id: light.hallway_backlight_wardrobe
 
     - id: backlight_auto_off
       alias: backlight_auto_off
@@ -101,7 +103,7 @@ hallway:
             seconds: 0
       action:
         - service: light.turn_off
-          entity_id: light.backlight_boardroom_light
+          entity_id: light.hallway_backlight_wardrobe
     - id: hallway_minute_without_presence
       alias: hallway_minute_without_presence
       description: hallway - scheduled check for presence

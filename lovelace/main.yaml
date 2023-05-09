@@ -28,7 +28,7 @@ cards:
     entities:
       - entity: light.hallway_light
       # - entity: light.hallway_boardroom
-      - entity: light.backlight_boardroom_light
+      - entity: light.hallway_backlight_wardrobe
         icon: mdi:led-strip
       # - entity: light.hallway_kitchen
       - entity: sensor.socket_fridge_active_power

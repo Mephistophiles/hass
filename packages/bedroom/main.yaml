@@ -98,7 +98,7 @@ bedroom:
       alias: illuminance_change_light
       trigger:
         - platform: numeric_state
-          entity_id: sensor.bedroom_illuminance_sensor
+          entity_id: sensor.bedroom_illuminance_sensor_illuminance_lux
           above: input_number.maximum_illuminance
       action:
         - service: input_boolean.turn_off
@@ -107,7 +107,7 @@ bedroom:
       alias: illuminance_change_dark
       trigger:
         - platform: numeric_state
-          entity_id: sensor.bedroom_illuminance_sensor
+          entity_id: sensor.bedroom_illuminance_sensor_illuminance_lux
           below: input_number.minimal_illuminance
       action:
         - service: input_boolean.turn_on

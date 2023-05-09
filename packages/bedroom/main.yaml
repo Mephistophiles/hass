@@ -157,7 +157,7 @@ bedroom:
           to: "on"
         - platform: state
           entity_id: sensor.bedroom_motion_sensor_bed_presence_event
-          type: enter
+          to: enter
       condition:
         - condition: state
           entity_id: input_boolean.need_light

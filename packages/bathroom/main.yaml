@@ -16,12 +16,22 @@ bathroom:
               disable_notification: true
   homeassistant:
     customize:
+      switch.bathroom_socket_airdryer:
+        friendly_name: "Air Dryer"
+        icon: mdi:tumble-dryer
+      sensor.bathroom_socket_airdryer_power:
+        friendly_name: "Air Dryer Power"
+        icon: mdi:tumble-dryer
       binary_sensor.bathroom_water_leak_sensor_bath_water_leak:
         friendly_name: "Leak sensor - Bath"
       binary_sensor.bathroom_water_leak_sensor_sink_water_leak:
         friendly_name: "Leak sensor - Sink"
       binary_sensor.bathroom_water_leak_sensor_washing_machine_water_leak:
         friendly_name: "Leak sensor - Washing Machine"
+      switch.bathroom_socket_washing_machine:
+        friendly_name: "Washing Machine"
+      sensor.bathroom_socket_washing_machine_power:
+        friendly_name: "Washing Machine Power"
   template:
     - binary_sensor:
         - name: washing_machine_running

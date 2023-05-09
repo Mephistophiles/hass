@@ -58,7 +58,7 @@ cards:
       - entity: binary_sensor.washing_machine_running
         name: Washing Machine Running
         icon: mdi:washing-machine
-      - entity: sensor.tz3000_cehuw1lw_ts011f_active_power_2
+      - entity: sensor.bathroom_socket_washing_machine_power
       - entity: binary_sensor.bathroom_leak_sensor_bath_water_leak
       - entity: binary_sensor.bathroom_water_leak_sensor_sink_water_leak
       - entity: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_4

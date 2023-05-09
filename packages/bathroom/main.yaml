@@ -26,5 +26,5 @@ bathroom:
     - binary_sensor:
         - name: washing_machine_running
           state: >
-            {{ int(states('sensor.tz3000_cehuw1lw_ts011f_active_power_2'), 0) > 10 }}
+            {{ int(states('sensor.bathroom_socket_washing_machine_power'), 0) > 10 }}
           delay_off: 00:03:00

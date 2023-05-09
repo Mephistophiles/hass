@@ -8,6 +8,8 @@ hallway:
         friendly_name: Presence in Hallway
       binary_sensor.hallway_motion_sensor_door_presence:
         friendly_name: Presence in Hallway door
+      binary_sensor.hallway_motion_sensor_wardrobe_occupancy:
+        friendly_name: Presence in Wardrobe Zone
       switch.socket_kitchen:
         friendly_name: Socket
         icon: mdi:power-socket-eu
